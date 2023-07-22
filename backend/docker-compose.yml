@@ -1,11 +1,13 @@
 services:
   backend:
-    image: node:16.14-alpine
+    image: backend_event_hall
     container_name: backend_hall_events
+    build: ./
     tty: true
     stdin_open: true
     restart: always
-    working_dir: /app-backend
+    working_dir: /backend
+    command: start 
     volumes:
       - ./:/app
     depends_on:
