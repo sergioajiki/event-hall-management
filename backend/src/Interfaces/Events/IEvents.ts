@@ -3,5 +3,7 @@ export interface IEvent {
   id: number;
   eventName: string;
   eventData: Date;
+  eventTime: Date;
   eventType: EventType;
+  description: string;
 }

@@ -11,7 +11,9 @@ InferCreationAttributes<SequelizeEvents>> {
   declare id: CreationOptional<number>;
   declare eventName: string;
   declare eventData: string;
+  declare eventTime: string;
   declare eventType: string;
+  declare description: string;
 }
 
 SequelizeEvents.init ({
@@ -31,11 +33,19 @@ SequelizeEvents.init ({
     field: 'event_data',
     allowNull: false,
   },
+  eventTime: {
+    type: DataTypes.TIME,
+    allowNull: false,
+  },
   eventType: {
     type: DataTypes.STRING,
     field: 'event_type',
     allowNull: false,
   },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 }, {
   sequelize: db,
   modelName: 'events',

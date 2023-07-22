@@ -6,5 +6,4 @@ router.get(
   '/event',
   (req: Request, res: Response) => res.json({ message: 'Preparando endpoint de Eventos' }),
 )
-
 export default router;

@@ -16,13 +16,20 @@ export default {
         allowNull: false,
       },
       eventData: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      eventTime: {
+        type: DataTypes.TIME,
         allowNull: false,
       },
       eventType: {
         type: DataTypes.STRING,
         allowNull: false,
-        
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
       }
     });
   },
