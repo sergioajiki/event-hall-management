@@ -1,15 +1,14 @@
 services:
   backend:
-    image: backend_event_hall
     container_name: backend_hall_events
     build: ./
     tty: true
     stdin_open: true
     restart: always
     working_dir: /backend
-    command: start 
+    command: nodemon
     volumes:
-      - ./:/app
+      - ./:/backend
     depends_on:
       db:
         condition: service_healthy
