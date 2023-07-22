@@ -1,1 +1,1 @@
-export type EventType = 'free' | 'registered' | 'private'
+export type EventType = 'free' | 'registered' | 'private';

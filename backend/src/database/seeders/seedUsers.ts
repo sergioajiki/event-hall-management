@@ -10,7 +10,7 @@ export default {
          email: 'teste@teste.com',
          password: '123456',
          role: 'admin',
-         activation_code: 'colocar o codigo para ativar',
+         activationCode: 'colocar o codigo para ativar',
          status: 1, 
         },
         {
@@ -18,7 +18,7 @@ export default {
           email: 'userOne@teste.com',
           password: '654321',
           role: 'guest',
-          activation_code: 'colocar o codigo para ativar',
+          activationCode: 'colocar o codigo para ativar',
           status: 0, 
          },
          {
@@ -26,7 +26,7 @@ export default {
           email: 'userTwo@teste.com',
           password: 'qwerty',
           role: 'guest',
-          activation_code: 'colocar o codigo para ativar',
+          activationCode: 'colocar o codigo para ativar',
           status: 0, 
          },
       ],

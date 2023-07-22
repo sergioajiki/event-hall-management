@@ -6,19 +6,19 @@ export default {
       'events',
       [
         {
-          event_name: 'Expo Quadros',
-          event_data: '2023-07-21',
-          event_type: 'free',
+          eventName: 'Expo Quadros',
+          eventData: '2023-07-21',
+          eventType: 'free',
         },
         {
-          event_name: 'Show Musical',
-          event_data: '2023-07-21',
-          event_type: 'registered',
+          eventName: 'Show Musical',
+          eventData: '2023-07-21',
+          eventType: 'registered',
         },
         {
-          event_name: 'Churrasco',
-          event_data: '2023-07-21',
-          event_type: 'private',
+          eventName: 'Churrasco',
+          eventData: '2023-07-21',
+          eventType: 'private',
         },
       ],
       {},

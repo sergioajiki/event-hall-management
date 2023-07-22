@@ -31,7 +31,7 @@ export default {
         allowNull: false,
       },
       status: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
       }
