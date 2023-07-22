@@ -1,4 +1,5 @@
 import express, { Request, Response }  from 'express';
+import router from './routers'; 
 
 
 class App {
@@ -14,12 +15,12 @@ class App {
       async (_req: Request, res: Response): Promise<Response> => res.status(200).json(
         { message: 'Yeeeiiiii'} ),
     );
-    // this.routes();
+    this.routers();
   }
 
-  // private routes(): void {
-  //   this.app.use(router);
-  // }
+  private routers(): void {
+    this.app.use(router);
+  }
 
   private config(): void {
       const accessControl: express.RequestHandler = (_req, res, next) => {
