@@ -1,4 +1,4 @@
-import { UserStatus } from "./Userstatus";
+import { UserStatus } from './Userstatus';
 
 export interface IUser {
   id: number;

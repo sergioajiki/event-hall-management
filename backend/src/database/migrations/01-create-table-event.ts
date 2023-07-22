@@ -12,6 +12,7 @@ export default {
       },
       eventName: {
         type: DataTypes.STRING,
+
         allowNull: false,
       },
       eventData: {
@@ -21,6 +22,7 @@ export default {
       eventType: {
         type: DataTypes.STRING,
         allowNull: false,
+        
       }
     });
   },

@@ -23,14 +23,17 @@ SequelizeEvents.init ({
   },
   eventName: {
     type: DataTypes.STRING,
+    field: 'event_name',
     allowNull: false,
   },
   eventData: {
     type: DataTypes.DATE,
+    field: 'event_data',
     allowNull: false,
   },
   eventType: {
     type: DataTypes.STRING,
+    field: 'event_type',
     allowNull: false,
   },
 }, {
