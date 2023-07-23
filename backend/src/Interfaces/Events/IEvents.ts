@@ -4,6 +4,6 @@ export interface IEvent {
   eventName: string;
   eventData: Date;
   eventTime: Date;
-  eventType: EventType;
+  eventType: EventType | string;
   description: string;
 }

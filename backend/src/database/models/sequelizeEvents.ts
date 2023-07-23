@@ -10,8 +10,8 @@ class SequelizeEvents extends Model<InferAttributes<SequelizeEvents>,
 InferCreationAttributes<SequelizeEvents>> {
   declare id: CreationOptional<number>;
   declare eventName: string;
-  declare eventData: string;
-  declare eventTime: string;
+  declare eventData: Date;
+  declare eventTime: Date;
   declare eventType: string;
   declare description: string;
 }
