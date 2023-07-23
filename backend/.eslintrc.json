@@ -73,7 +73,7 @@
         ],
         "complexity": [
           "error",
-          5
+          10
         ],
         "import/no-extraneous-dependencies": [
           "off"

@@ -13,6 +13,14 @@ export default class EventService {
     return {
       status: 'SUCCESSFUL',
       data: allEvents,        
-      }
     }
+  }
+
+  public async getOpenEvents(): Promise<ServiceResponse<IEvent[]>> {
+    const openEvents = await this.eventModel.getOpenEvents();
+    return {
+      status: 'SUCCESSFUL',
+      data: openEvents,  
+    }
+  }
 }
