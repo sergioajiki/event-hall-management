@@ -22,18 +22,22 @@ exports.default = {
                 },
                 eventName: {
                     type: sequelize_1.DataTypes.STRING,
+                    field: 'event_name',
                     allowNull: false,
                 },
                 eventData: {
                     type: sequelize_1.DataTypes.DATEONLY,
+                    field: 'event_data',
                     allowNull: false,
                 },
                 eventTime: {
                     type: sequelize_1.DataTypes.TIME,
+                    field: 'event_time',
                     allowNull: false,
                 },
                 eventType: {
                     type: sequelize_1.DataTypes.STRING,
+                    field: 'event_type',
                     allowNull: false,
                 },
                 description: {

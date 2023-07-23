@@ -35,6 +35,7 @@ SequelizeEvents.init ({
   },
   eventTime: {
     type: DataTypes.TIME,
+    field: 'event_time',
     allowNull: false,
   },
   eventType: {

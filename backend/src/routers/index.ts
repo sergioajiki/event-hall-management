@@ -6,4 +6,5 @@ const router = Router();
 
 router.use(authRouter);
 router.use(eventRouter);
+
 export default router;

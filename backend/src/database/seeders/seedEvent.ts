@@ -6,24 +6,24 @@ export default {
       'events',
       [
         {
-          eventName: 'Expo Quadros',
-          eventData: '2023-07-21',
-          eventTime: '08:00:00',
-          eventType: 'free',
+          event_Name: 'Expo Quadros',
+          event_Data: '2023-07-21',
+          event_Time: '08:00:00',
+          event_Type: 'free',
           description: 'Exposição de Quadros'          
         },
         {
-          eventName: 'Show Musical',
-          eventData: '2023-07-21',
-          eventTime: '20:00:00',
-          eventType: 'registered',
+          event_Name: 'Show Musical',
+          event_Data: '2023-07-21',
+          event_Time: '20:00:00',
+          event_Type: 'registered',
           description: 'Apresentação musical'
         },
         {
-          eventName: 'Churrasco',
-          eventData: '2023-07-21',
-          eventTime: '12:00:00',
-          eventType: 'private',
+          event_Name: 'Churrasco',
+          event_Data: '2023-07-21',
+          event_Time: '12:00:00',
+          event_Type: 'private',
           description: 'Almoço'
         },
       ],
