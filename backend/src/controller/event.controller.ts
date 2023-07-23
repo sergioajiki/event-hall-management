@@ -6,11 +6,13 @@ export default class EventController {
   constructor(
     private eventService = new EventService(),
   ) {}
-  public async getAllEvents (req: Request, res: Response): Promise<Response> {
+  public async getAllEvents(_req: Request, res: Response): Promise<Response> {
     const allEvents = await this.eventService.getAllEvents();
     return res.status(maptStatusHTTP(allEvents.status)).json(allEvents.data)
   }
-  public async getOpenvents (req: Request, res: Response): Promise<Response> {
+  public async getOpenvents(_req: Request, res: Response): Promise<Response> {
+    console.log('aqui');
+    
     const openEvents = await this.eventService.getOpenEvents();
     return res.status(maptStatusHTTP(openEvents.status)).json(openEvents.data)
   }
