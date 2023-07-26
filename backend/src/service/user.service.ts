@@ -2,6 +2,7 @@ import UserModel from '../model/user.model';
 import { IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import activationCodeGenerator from '../utils/activationCodeGenerator';
 
 export default class UserService {
   constructor(
@@ -18,7 +19,7 @@ export default class UserService {
     const payload = {
       ...userPayload,
       role: 'guest',
-      activationCode: 'colocar aqui o código de ativação',
+      activationCode: activationCodeGenerator.generateActivationCode(),
       status: 0
     }
     await this.userModel.createUser(payload)
