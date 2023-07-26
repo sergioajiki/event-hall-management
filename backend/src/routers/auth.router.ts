@@ -7,8 +7,9 @@ const router = Router();
 
 router.get(
   '/login',
-  (req: Request, res: Response) => res.json({ message: 'Preparando endpoint Login' }),
+  (req: Request, res: Response) => userController.login(req, res)
 )
+
 router.post(
   '/login/register',
   ValidationUser.validateCreateUserFields,

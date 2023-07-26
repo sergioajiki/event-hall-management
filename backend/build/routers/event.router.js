@@ -10,5 +10,5 @@ const router = (0, express_1.Router)();
 router.get('/event', (req, res) => res.json({ message: 'Preparando endpoint de Eventos' }));
 router.get('/event/open', (req, res) => eventController.getOpenvents(req, res));
 router.get('/event/private', (req, res) => eventController.getAllEvents(req, res));
-router.get('/eventi/:id', (req, res) => eventController.getEventsById(req, res));
+router.get('/event/:id', (req, res) => eventController.getEventsById(req, res));
 exports.default = router;

@@ -12,4 +12,10 @@ export default class UserController {
     const response = await this.userService.createUser(payload);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }
+
+  public async login(req: Request, res: Response): Promise<Response> {
+    const loginInfo = req.body;
+    const response = await this.userService.login(loginInfo);
+    return res.status(maptStatusHTTP(response.status)).json(response.data);
+  }
 }
