@@ -1,6 +1,7 @@
 export default function maptStatusHTTP(status: string): number {
     switch (status) {
       case 'SUCCESSFUL': return 200;
+      case 'CREATE': return 201
       case 'INVALID_DATA': return 400;
       case 'UNAUTHORIZED': return 401;
       case 'NOT_FOUND': return 404;
