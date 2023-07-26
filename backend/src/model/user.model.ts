@@ -15,7 +15,6 @@ export default class UserModel implements IUserModel {
     const user = await this.model.findOne({
       where: { email }
     })
-    console.log('resultado da model', user);
     if(!user) {
       return null
     }

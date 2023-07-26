@@ -12,7 +12,8 @@ router.get(
 router.post(
   '/login/register',
   ValidationUser.validateCreateUserFields,
-  ValidationUser.ValidatePassword,
+  ValidationUser.ValidatePasswordFormat,
+  ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => userController.createUser(req, res)
 )
 

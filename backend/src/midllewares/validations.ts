@@ -10,12 +10,20 @@ export default class ValidationUser {
     }
 		next();
 	}
-	static ValidatePassword(req: Request, res: Response, next: NextFunction)
+	static ValidatePasswordFormat(req: Request, res: Response, next: NextFunction)
 	: Response | void {
     const { password } = req.body;
     if (password.length < 6 || password.length > 12) {
-      return res.status(401).json({ message: 'must be 6 to 12 characters' });
+      return res.status(400).json({ message: 'Must be 6 to 12 characters' });
     }
     next();
-  }     
+  }
+	static ValidateEmailFormat(req: Request, res: Response, next: NextFunction): Response | void {
+    const { email } = req.body;
+    if (!Email.isValidEmail(email)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+    next();
+  }
+	
 }
