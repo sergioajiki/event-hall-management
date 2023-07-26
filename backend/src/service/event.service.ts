@@ -23,4 +23,13 @@ export default class EventService {
       data: openEvents,  
     }
   }
+
+  public async getEventsById(id: number): Promise<ServiceResponse<IEvent | null>> {
+    console.log('aqui no service o id é', id);
+    const eventById = await this.eventModel.getEventsById(+id);
+    return {
+      status: 'SUCCESSFUL',
+      data: eventById,  
+    }
+  }
 }

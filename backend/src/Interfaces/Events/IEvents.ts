@@ -6,4 +6,5 @@ export interface IEvent {
   eventTime: Date;
   eventType: EventType | string;
   description: string;
+  users?: [];
 }

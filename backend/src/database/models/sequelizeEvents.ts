@@ -4,8 +4,12 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
+  // Association,
 } from 'sequelize';
 import db from '.';
+import SequelizeUsers from './sequelizeUsers';
+import SequelizeEventUser from './sequelizeEventUser';
+
 class SequelizeEvents extends Model<InferAttributes<SequelizeEvents>, 
 InferCreationAttributes<SequelizeEvents>> {
   declare id: CreationOptional<number>;
@@ -14,6 +18,10 @@ InferCreationAttributes<SequelizeEvents>> {
   declare eventTime: Date;
   declare eventType: string;
   declare description: string;
+
+  // public static associations: {
+  //   events: Association<SequelizeEvents, SequelizeUsers>;
+  // }
 }
 
 SequelizeEvents.init ({
@@ -54,4 +62,17 @@ SequelizeEvents.init ({
   underscored: true,
 });
 
+SequelizeUsers.belongsToMany(SequelizeEvents, {
+  through: SequelizeEventUser,
+//   as: 'events',
+  foreignKey: 'id_user',
+  otherKey: 'id_event'
+});
+
+SequelizeEvents.belongsToMany(SequelizeUsers, {
+//   as: 'users',
+  through: SequelizeEventUser,
+  foreignKey: 'id_event',
+  otherKey: 'id_user',
+});
 export default SequelizeEvents;

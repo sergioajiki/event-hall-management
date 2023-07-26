@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const index_1 = __importDefault(require("./index"));
+// import SequelizeEvents from './sequelizeEvents';
 class SequelizeUsers extends sequelize_1.Model {
 }
 SequelizeUsers.init({

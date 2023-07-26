@@ -18,4 +18,9 @@ router.get(
   '/event/private',
   (req: Request, res: Response) => eventController.getAllEvents(req, res),
 )
+
+router.get(
+  '/event/:id',
+  (req: Request, res: Response) => eventController.getEventsById(req, res),
+)
 export default router;

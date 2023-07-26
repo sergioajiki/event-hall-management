@@ -28,6 +28,7 @@ export default {
       },
       activationCode: {
         type: DataTypes.STRING,
+        field: 'activation_code',
         allowNull: false,
       },
       status: {

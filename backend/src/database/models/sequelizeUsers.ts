@@ -4,8 +4,10 @@ import {
     InferAttributes,
     InferCreationAttributes,
     CreationOptional,
+    // Association,
 } from 'sequelize';
 import db from './index';
+// import SequelizeEvents from './sequelizeEvents';
 
 class SequelizeUsers extends Model<InferAttributes<SequelizeUsers>,
 InferCreationAttributes<SequelizeUsers>> {
@@ -16,6 +18,7 @@ InferCreationAttributes<SequelizeUsers>> {
   declare role: string;
   declare activationCode: string;
   declare status: number;
+
 } 
 
 SequelizeUsers.init({

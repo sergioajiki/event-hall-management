@@ -7,5 +7,5 @@ export interface IUser {
   password: string;
   role: string;
   activationCode: string;
-  status: UserStatus;    
+  status: UserStatus | number ;    
 }

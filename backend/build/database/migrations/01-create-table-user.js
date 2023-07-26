@@ -38,6 +38,7 @@ exports.default = {
                 },
                 activationCode: {
                     type: sequelize_1.DataTypes.STRING,
+                    field: 'activation_code',
                     allowNull: false,
                 },
                 status: {
