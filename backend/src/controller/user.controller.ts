@@ -9,7 +9,6 @@ export default class UserController {
 
   public async createUser(req: Request, res: Response): Promise<Response> {
     const payload = req.body;
-    console.log(payload);
     const response = await this.userService.createUser(payload);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }

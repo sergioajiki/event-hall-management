@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import UserController from '../controller/user.controller';
+import ValidationUser from '../midllewares/validations';
 
 const userController = new UserController();
 const router = Router();
@@ -10,6 +11,7 @@ router.get(
 )
 router.post(
   '/login/register',
+  ValidationUser.validateCreateUserFields,
   (req: Request, res: Response) => userController.createUser(req, res)
 )
 
