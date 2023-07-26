@@ -1,7 +1,8 @@
-import { IUser } from './IUser';
+import { IUser, IUserPayload } from './IUser';
 
 export interface IUserModel {
   getAllUsers(): Promise<IUser[]>,
-  // getUserByEmail(): Promise<IUser | null>
-  // getRoleUserByEmail(): Promise<IUser | null>  
+  getUserByEmail(email:string): Promise<IUser | null>
+  // getRoleUserByEmail(): Promise<IUser | null> 
+  createUser(UserPayload: IUserPayload): Promise<IUser>
 }

@@ -9,3 +9,9 @@ export interface IUser {
   activationCode: string;
   status: UserStatus | number ;    
 }
+
+export interface IUserPayload {
+  username: string,
+  email: string,
+  password: string
+}
