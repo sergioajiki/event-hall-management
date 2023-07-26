@@ -9,5 +9,13 @@ export default class ValidationUser {
       return res.status(400).json({ message: 'All fields must be filled' });
     }
 		next();
-	}     
+	}
+	static ValidatePassword(req: Request, res: Response, next: NextFunction)
+	: Response | void {
+    const { password } = req.body;
+    if (password.length < 6 || password.length > 12) {
+      return res.status(401).json({ message: 'must be 6 to 12 characters' });
+    }
+    next();
+  }     
 }
