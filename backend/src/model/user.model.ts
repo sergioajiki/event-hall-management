@@ -7,7 +7,9 @@ export default class UserModel implements IUserModel {
   private model = SequelizeUsers;
   
   async getAllUsers(): Promise<IUser[]> {
-    const allUsers = await this.model.findAll();
+    const allUsers = await this.model.findAll({
+      attributes: {exclude: ['password']}
+    });
     return allUsers;
   }
 

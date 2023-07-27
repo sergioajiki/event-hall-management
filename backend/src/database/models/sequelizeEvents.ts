@@ -14,7 +14,7 @@ class SequelizeEvents extends Model<InferAttributes<SequelizeEvents>,
 InferCreationAttributes<SequelizeEvents>> {
   declare id: CreationOptional<number>;
   declare eventName: string;
-  declare eventData: Date;
+  declare eventDate: Date;
   declare eventTime: Date;
   declare eventType: string;
   declare description: string;
@@ -36,9 +36,9 @@ SequelizeEvents.init ({
     field: 'event_name',
     allowNull: false,
   },
-  eventData: {
+  eventDate: {
     type: DataTypes.DATE,
-    field: 'event_data',
+    field: 'event_date',
     allowNull: false,
   },
   eventTime: {

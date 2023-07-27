@@ -7,21 +7,21 @@ export default {
       [
         {
           event_Name: 'Expo Quadros',
-          event_Data: '2023-07-21',
+          event_Date: '2023-07-21',
           event_Time: '08:00:00',
           event_Type: 'free',
           description: 'Exposição de Quadros'          
         },
         {
           event_Name: 'Show Musical',
-          event_Data: '2023-07-21',
+          event_Date: '2023-07-21',
           event_Time: '20:00:00',
           event_Type: 'registered',
           description: 'Apresentação musical'
         },
         {
           event_Name: 'Churrasco',
-          event_Data: '2023-07-21',
+          event_Date: '2023-07-21',
           event_Time: '12:00:00',
           event_Type: 'private',
           description: 'Almoço'

@@ -15,9 +15,9 @@ export default {
         field: 'event_name',
         allowNull: false,
       },
-      eventData: {
+      eventDate: {
         type: DataTypes.DATEONLY,
-        field: 'event_data',
+        field: 'event_date',
         allowNull: false,
       },
       eventTime: {

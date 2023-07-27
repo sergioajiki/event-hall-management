@@ -3,6 +3,7 @@ import { Op } from 'sequelize';
 import { IEventModel } from '../Interfaces/Events/IEventModel';
 import { IEvent } from '../Interfaces/Events/IEvents';
 import SequelizeUsers from '../database/models/sequelizeUsers';
+import { IEventPayload } from '../Interfaces/Events/IEventPayload';
 
 export default class EventModel implements IEventModel {
   private eventModel = SequelizeEvents;
@@ -21,6 +22,26 @@ export default class EventModel implements IEventModel {
     return openEvents;
   }
 
+  async getEventByName(eventName: string): Promise<IEvent | null> {
+    const event = await this.eventModel.findOne({
+      where: { eventName }
+    })
+    if (!event) {
+      return null
+    }
+     return event;
+  }
+
+  async getEventByDate(eventDate: Date): Promise<IEvent | null> {
+    const event = await this.eventModel.findOne({
+      where: { eventDate }
+    })
+    if (!event) {
+      return null
+    }
+     return event;
+  }
+
   async getEventsById(id: number): Promise<IEvent | null> {
     const event = await this.eventModel.findOne({
       // const events = await SequelizeEventUser.findOne({
@@ -36,6 +57,11 @@ export default class EventModel implements IEventModel {
       return null
     }
      return event;
-    }  
+    }
+
+  async createEvent(eventPayload: IEventPayload): Promise<IEvent> {
+    const newEvent = await this.eventModel.create(eventPayload);
+    return newEvent;  
+  }
 }
 

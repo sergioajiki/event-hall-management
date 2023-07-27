@@ -1,5 +1,5 @@
 import UserModel from '../model/user.model';
-import { IUserPayload } from '../Interfaces/Users/IUser';
+import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import activationCodeGenerator from '../utils/activationCodeGenerator';
@@ -18,7 +18,7 @@ export default class UserService {
     const { username, email, password } = userPayload;
     const alreadyRegisteredEmail = await this.userModel.getUserByEmail(email);
     if (alreadyRegisteredEmail) {
-        return { status: 'CONFLICT', data: { message: 'Email já está cadastrado' } }  
+        return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } }  
     }
     
     const payload = {
@@ -54,6 +54,12 @@ export default class UserService {
     const payload = { id: userInfo.id, email: userInfo.email };
     const token = JwtUtils.sign(payload)
     return { status: 'SUCCESSFUL', data: { token } };
-
+  }
+  public async getAllUsers(): Promise<ServiceResponse<IUser[]>> {
+    const allUsers = await this.userModel.getAllUsers();
+    return {
+      status: 'SUCCESSFUL',
+      data: allUsers,
+    }
   }
 }

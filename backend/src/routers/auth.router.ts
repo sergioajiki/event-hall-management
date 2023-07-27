@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import UserController from '../controller/user.controller';
-import ValidationUser from '../midllewares/validations';
+import ValidationUser from '../midllewares/validationsUser';
 
 const userController = new UserController();
 const router = Router();
@@ -16,6 +16,11 @@ router.post(
   ValidationUser.ValidatePasswordFormat,
   ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => userController.createUser(req, res)
+)
+
+router.get(
+  '/users',
+  (req: Request, res: Response) => userController.getAllUsers(req, res)
 )
 
 export default router;

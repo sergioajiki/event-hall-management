@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import EventController from '../controller/event.controller';
+import ValidationEvent from '../midllewares/validationsEvent';
 
 const eventController = new EventController();
 const router = Router();
@@ -22,5 +23,12 @@ router.get(
 router.get(
   '/event/:id',
   (req: Request, res: Response) => eventController.getEventsById(req, res),
+)
+
+router.post(
+  '/event',
+  ValidationEvent.validateCreateEventFields,
+  ValidationEvent.validateEventType,
+  (req: Request, res: Response) => eventController.createEvent(req, res),
 )
 export default router;

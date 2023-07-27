@@ -21,9 +21,9 @@ SequelizeEvents.init({
         field: 'event_name',
         allowNull: false,
     },
-    eventData: {
+    eventDate: {
         type: sequelize_1.DataTypes.DATE,
-        field: 'event_data',
+        field: 'event_date',
         allowNull: false,
     },
     eventTime: {
