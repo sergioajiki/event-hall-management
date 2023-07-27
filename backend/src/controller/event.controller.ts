@@ -28,11 +28,18 @@ export default class EventController {
     const response = await this.eventService.createEvent(payload);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }
-  
+
   public async updateEventById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     const payload = req.body;
     const response = await this.eventService.updateEventById(+id, payload);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }
+
+  public async deleteEventById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const response = await this.eventService.deleteEventById(+id);
+    return res.status(maptStatusHTTP(response.status)).json(response.data)
+  }
+
 }

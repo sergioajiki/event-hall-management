@@ -37,4 +37,8 @@ router.patch(
   ValidationEvent.validateEventType,
   (req: Request, res: Response) => eventController.updateEventById(req, res),
 )
+router.delete(
+  '/event/:id',
+  (req: Request, res: Response) => eventController.deleteEventById(req, res),
+)
 export default router;

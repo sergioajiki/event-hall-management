@@ -61,4 +61,13 @@ export default class EventService {
     };
   }
   
+  public async deleteEventById(id: number)
+  : Promise<ServiceResponse<ServiceMessage>> {
+    const isEvent = await this.eventModel.getEventsById(+id);
+    if (!isEvent){
+      return { status: 'NOT_FOUND', data: { message: 'Event not found' } };
+    }
+    await this.eventModel.deleteEventById(+id);
+    return { status: 'SUCCESSFUL', data: { message: 'Evento foi apagado' } };
+  }
 }

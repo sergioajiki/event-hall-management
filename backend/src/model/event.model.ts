@@ -4,6 +4,7 @@ import { IEventModel } from '../Interfaces/Events/IEventModel';
 import { IEvent } from '../Interfaces/Events/IEvents';
 import SequelizeUsers from '../database/models/sequelizeUsers';
 import { IEventPayload } from '../Interfaces/Events/IEventPayload';
+import { ServiceMessage } from '../Interfaces/ServiceResponse';
 
 export default class EventModel implements IEventModel {
   private eventModel = SequelizeEvents;
@@ -69,9 +70,15 @@ export default class EventModel implements IEventModel {
     const [updatedEvent] = await this.eventModel.update(eventPayload, {
       where: { id },
     })
-    console.log(updatedEvent);
-    
     return updatedEvent;
+  }
+
+  async deleteEventById(id: number)
+  : Promise<ServiceMessage> {
+  await this.eventModel.destroy({
+    where: { id },
+  })
+  return {message: 'Event deleted'}
   }
 }
 
