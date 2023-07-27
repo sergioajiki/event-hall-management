@@ -31,4 +31,10 @@ router.post(
   ValidationEvent.validateEventType,
   (req: Request, res: Response) => eventController.createEvent(req, res),
 )
+router.patch(
+  '/event/:id',
+  ValidationEvent.validateCreateEventFields,
+  ValidationEvent.validateEventType,
+  (req: Request, res: Response) => eventController.updateEventById(req, res),
+)
 export default router;

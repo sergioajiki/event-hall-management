@@ -63,5 +63,15 @@ export default class EventModel implements IEventModel {
     const newEvent = await this.eventModel.create(eventPayload);
     return newEvent;  
   }
+
+  async updateEventById(id: number, eventPayload: IEventPayload)
+    : Promise<IEvent | number> {
+    const [updatedEvent] = await this.eventModel.update(eventPayload, {
+      where: { id },
+    })
+    console.log(updatedEvent);
+    
+    return updatedEvent;
+  }
 }
 

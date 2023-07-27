@@ -33,14 +33,6 @@ export default class EventService {
     }
   }
 
-  // private async checkEventAgenda (eventName: string, eventDate: Date, eventTime: Date): Promise<boolean> {
-  //   const isEventName = await this.eventModel.getEventByName(eventName);
-  //   if (isEventName) {
-  //     if (alreadyRegisteredEmail) {
-  //       return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } }  
-  //   }
-  //   }
-  // }
   public async createEvent(eventPayload: IEventPayload): Promise<ServiceResponse<ServiceMessage>> {
     const {eventName, eventDate } = eventPayload
     const isEventName = await this.eventModel.getEventByName(eventName);
@@ -58,4 +50,15 @@ export default class EventService {
     }
 
   }
+  public async updateEventById(id: number, eventPayload: IEventPayload)
+  : Promise<ServiceResponse<IEvent | number>> {
+    const isEvent = await this.eventModel.getEventsById(+id);
+    if (!isEvent){
+      return { status: 'NOT_FOUND', data: { message: 'Event not found' } };
+    }  
+    await this.eventModel.updateEventById(+id, eventPayload);
+    return { status: 'CREATE', data: { message: 'Evento foi atualizado' }
+    };
+  }
+  
 }

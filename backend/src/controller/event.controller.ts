@@ -6,7 +6,7 @@ export default class EventController {
   constructor(
     private eventService = new EventService(),
   ) {}
-  
+
   public async getAllEvents(_req: Request, res: Response): Promise<Response> {
     const allEvents = await this.eventService.getAllEvents();
     return res.status(maptStatusHTTP(allEvents.status)).json(allEvents.data)
@@ -26,6 +26,13 @@ export default class EventController {
   public async createEvent(req: Request, res: Response): Promise<Response> {
     const payload = req.body;
     const response = await this.eventService.createEvent(payload);
+    return res.status(maptStatusHTTP(response.status)).json(response.data)
+  }
+  
+  public async updateEventById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const payload = req.body;
+    const response = await this.eventService.updateEventById(+id, payload);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }
 }
