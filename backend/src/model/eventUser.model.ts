@@ -16,9 +16,10 @@ export default class EventUserModel implements IEventUserModel {
       where: {
         [Op.and]: [{idEvent}, {idUser}]},
     })
-    if (!event) {
-      return null
-    }
-     return event;
+    return !event ? null : event;
+    // if (!event) {
+    //   return null
+    // }
+    //  return event;
   }
 }

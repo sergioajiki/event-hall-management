@@ -5,7 +5,6 @@ import EventModel from '../model/event.model';
 import EventUserModel from '../model/eventUser.model';
 import { IEventModel } from '../Interfaces/Events/IEventModel';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
-import e from 'express';
 
 export default class EventUserService {
   constructor(

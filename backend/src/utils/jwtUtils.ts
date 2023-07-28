@@ -1,9 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { TokenPayload } from '../Interfaces/TokenPayload';
+import { Secret } from 'jsonwebtoken';
 import 'dotenv/config';
 
 export default class JwtUtils {
-    private static jwtSecret = process.env.JWT_SECRET || 'jwt_secret' ;
+    // private static jwtSecret = process.env.JWT_SECRET || 'jwt_secret' ;
+    private static jwtSecret = process.env.JWT_SECRET as Secret
     private static jwtOptions = { expiresIn: '10d'}
 
     public static sign(payload: TokenPayload): string {
