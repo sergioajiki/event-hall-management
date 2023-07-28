@@ -23,4 +23,9 @@ router.get(
   (req: Request, res: Response) => userController.getAllUsers(req, res)
 )
 
+router.get(
+  '/activate/:userId/:activationCode',
+  (req: Request, res: Response) => userController.activateUser(req, res)
+)
+
 export default router;

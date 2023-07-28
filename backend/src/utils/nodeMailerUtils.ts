@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
 import { PayloadSendMail } from '../Interfaces/Mail/PayloadSendMail';
+import buildActivationUrl from './activationUrlBuilder';
 
 const transport = nodemailer.createTransport({
   host: 'sandbox.smtp.mailtrap.io',

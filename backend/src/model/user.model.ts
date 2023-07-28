@@ -23,6 +23,21 @@ export default class UserModel implements IUserModel {
     return user;
   }
 
+  async getUserById(id: number): Promise<IUser | null> {
+    const  user = await this.model.findByPk(id);
+    if(!user) {
+      return null
+    }
+    return user;
+  }
+
+  async activateUser(id: number): Promise<IUser | number> {
+    const [updateUser] = await this.model.update({ status: 1 }, {
+      where: { id },
+    })
+    return updateUser
+  }
+
   async createUser(userPayload: IUser): Promise<IUser> {
     const newUser = await this.model.create(userPayload);
     return newUser;

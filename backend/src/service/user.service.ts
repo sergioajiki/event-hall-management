@@ -1,13 +1,14 @@
 import UserModel from '../model/user.model';
 import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
-import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
 import activationCodeGenerator from '../utils/activationCodeGenerator';
 import BcryptUtils from '../utils/bcryptUtils';
 import { Token } from '../Interfaces/Token';
 import { ILogin } from '../Interfaces/ILogin';
 import JwtUtils from '../utils/jwtUtils';
 import emailBullService from '../utils/emailBullService';
+import buildActivationUrl from '../utils/activationUrlBuilder';
 
 export default class UserService {
   constructor(
@@ -16,20 +17,21 @@ export default class UserService {
   ) {}
 
   public async createUser(userPayload: IUserPayload): Promise<ServiceResponse<string>> {
-    const { username, email, password } = userPayload;
-    const isEmail = await this.userModel.getUserByEmail(email);
+    // const { username, email, password } = userPayload;
+    const isEmail = await this.userModel.getUserByEmail(userPayload.email);
     if (isEmail) return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } };
-    const activationCode = activationCodeGenerator.generateActivationCode()
     const payload = {
-      username,
-      email,
-      password: this.bcryptUtils.hashPassword(password),
+      username: userPayload.username,
+      email: userPayload.email,
+      password: this.bcryptUtils.hashPassword(userPayload.password),
       role: 'guest',
-      activationCode,
+      activationCode: activationCodeGenerator.generateActivationCode(),
       status: 0
     }
-    await this.userModel.createUser(payload)
-    await emailBullService.emailQueue.add({email, username, activationCode})
+    const newUser = await this.userModel.createUser(payload);
+    const { id, username, activationCode, email } = newUser;
+    const activationUrl = buildActivationUrl( { id, activationCode } );
+    await emailBullService.emailQueue.add({email, username, activationUrl})
       return {
         status: 'CREATE',
         data: { message: 'Usuário foi cadastrado! Verifique seu email para ativar sua conta' }
@@ -63,4 +65,23 @@ export default class UserService {
       data: allUsers,
     }
   }
+
+  public async activateUser(id: number, activationCode: string)
+  : Promise<ServiceResponse<ServiceMessage>> {
+    const user = await this.userModel.getUserById(+id);
+    if(!user){
+      return { status: 'NOT_FOUND', data: { message: 'User not found' } }
+    }
+    if(user?.status === 1) {
+      return { status: 'CONFLICT', data: { message: `User with id ${id} already activated` } }
+    }
+    if(user.activationCode !== activationCode) {
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid Activation Code' } }
+    }
+    await this.userModel.activateUser(id)
+    return {
+      status: 'CREATE',
+      data: { message: 'Status do usuário foi atualizado' },
+    }
+}
 }
