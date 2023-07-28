@@ -19,9 +19,6 @@ InferCreationAttributes<SequelizeEvents>> {
   declare eventType: string;
   declare description: string;
 
-  // public static associations: {
-  //   events: Association<SequelizeEvents, SequelizeUsers>;
-  // }
 }
 
 SequelizeEvents.init ({

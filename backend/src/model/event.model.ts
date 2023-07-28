@@ -45,7 +45,6 @@ export default class EventModel implements IEventModel {
 
   async getEventsById(id: number): Promise<IEvent | null> {
     const event = await this.eventModel.findOne({
-      // const events = await SequelizeEventUser.findOne({
       where: { id },
       include: { 
         model: SequelizeUsers,
@@ -58,7 +57,25 @@ export default class EventModel implements IEventModel {
       return null
     }
      return event;
-    }
+  }
+
+  async getEmailByEventId(id: number): Promise<IEvent | null> {
+    const event = await this.eventModel.findOne({
+      where: { id },
+      include: { 
+        model: SequelizeUsers,
+        as: 'users',
+        attributes: ['username', 'email', 'activationCode'],
+        through: { attributes: []}
+      }, attributes: []
+    });
+
+    return !event ? null : event.dataValues;
+    // if (!event) {
+    //   return null
+    // }
+    //  return event;
+  }
 
   async createEvent(eventPayload: IEventPayload): Promise<IEvent> {
     const newEvent = await this.eventModel.create(eventPayload);

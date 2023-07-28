@@ -30,7 +30,7 @@ export default class UserService {
     const newUser = await this.userModel.createUser(payload);
     const { id, username, activationCode, email } = newUser;
     const activationUrl = buildActivationUrl( { id, activationCode } );
-    await emailBullService.emailQueue.add({email, username, activationUrl})
+    await emailBullService.emailQueue.add({email, username, activationUrl, subjectType: 'inscr'})
       return {
         status: 'CREATE',
         data: { message: 'Usuário foi cadastrado! Verifique seu email para ativar sua conta' }
