@@ -9,4 +9,5 @@ router.use(authRouter);
 router.use(eventRouter);
 router.use(eventUserRouter);
 router.use(userRouter);
+
 export default router;

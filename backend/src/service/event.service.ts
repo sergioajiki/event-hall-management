@@ -1,11 +1,11 @@
 import EventModel from '../model/event.model';
+import buildActivationUrl from '../utils/activationUrlBuilder';
+import emailBullService from '../utils/emailBullService';
 import { IEvent } from '../Interfaces/Events/IEvents';
 import { IEventModel } from '../Interfaces/Events/IEventModel';
 import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
 import { IEventPayload } from '../Interfaces/Events/IEventPayload';
 import { IUser } from '../Interfaces/Users/IUser';
-import buildActivationUrl from '../utils/activationUrlBuilder';
-import emailBullService from '../utils/emailBullService';
 
 export default class EventService {
   constructor(
@@ -15,19 +15,13 @@ export default class EventService {
   public async getAllEvents()
     : Promise<ServiceResponse<IEvent[]>> {
     const allEvents = await this.eventModel.getAllEvents();
-    return {
-      status: 'SUCCESSFUL',
-      data: allEvents,
-    }
+    return { status: 'SUCCESSFUL', data: allEvents }
   }
 
   public async getOpenEvents()
     : Promise<ServiceResponse<IEvent[]>> {
     const openEvents = await this.eventModel.getOpenEvents();
-    return {
-      status: 'SUCCESSFUL',
-      data: openEvents,
-    }
+    return { status: 'SUCCESSFUL', data: openEvents }
   }
 
   public async getEventsById(id: number)
@@ -36,10 +30,7 @@ export default class EventService {
     if (!eventById) {
       return { status: 'NOT_FOUND', data: { message: 'Event not found' } }
     }
-    return {
-      status: 'SUCCESSFUL',
-      data: eventById,
-    }
+    return { status: 'SUCCESSFUL', data: eventById }
   }
 
   public async createEvent(eventPayload: IEventPayload)
@@ -47,17 +38,14 @@ export default class EventService {
     const { eventName, eventDate } = eventPayload
     const isEventName = await this.eventModel.getEventByName(eventName);
     if (isEventName) {
-      return { status: 'CONFLICT', data: { message: 'Evento já está cadastrado' } }
+      return { status: 'CONFLICT', data: { message: 'Evento já está cadastrado' } };
     }
     const isEventDate = await this.eventModel.getEventByDate(eventDate);
     if (isEventDate) {
-      return { status: 'CONFLICT', data: { message: 'Dia do evento já está reservado' } }
+      return { status: 'CONFLICT', data: { message: 'Dia do evento já está reservado' } };
     }
     await this.eventModel.createEvent(eventPayload)
-    return {
-      status: 'CREATE',
-      data: { message: 'Evento cadastrado com sucesso' }
-    }
+    return { status: 'CREATE', data: { message: 'Evento cadastrado com sucesso' } };
   }
 
   public async updateEventById(id: number, eventPayload: IEventPayload)
@@ -74,10 +62,8 @@ export default class EventService {
       return  { email, username, activationUrl, subjectType: 'update' }
     });
     registeredAtEvent?.forEach(async (sendTo) => {
-      // const { email, username, activationUrl } = sendTo
       await emailBullService.emailQueue.add(sendTo) 
     })
-    console.log(registeredAtEvent);
     return { status: 'CREATE', data: { message: 'Evento foi atualizado' } };
   }
 

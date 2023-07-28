@@ -1,14 +1,14 @@
 import UserModel from '../model/user.model';
-import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
-import { IUserModel } from '../Interfaces/Users/IUserModel';
-import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
 import activationCodeGenerator from '../utils/activationCodeGenerator';
 import BcryptUtils from '../utils/bcryptUtils';
-import { Token } from '../Interfaces/Token';
-import { ILogin } from '../Interfaces/ILogin';
 import JwtUtils from '../utils/jwtUtils';
 import emailBullService from '../utils/emailBullService';
 import buildActivationUrl from '../utils/activationUrlBuilder';
+import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
+import { IUserModel } from '../Interfaces/Users/IUserModel';
+import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
+import { ILogin } from '../Interfaces/ILogin';
+import { Token } from '../Interfaces/Token';
 
 export default class UserService {
   constructor(
@@ -41,28 +41,20 @@ export default class UserService {
     const { email, password } = loginInfo
     const userInfo = await this.userModel.getUserByEmail(email);
     if (!userInfo){
-      return {
-        status: 'UNAUTHORIZED',
-        data: { message: 'Invalid email or password' },
-      };
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
     const isValidPassword = this.bcryptUtils.checkPassword(password, userInfo.password);
     if (!isValidPassword) {
-      return {
-        status: 'UNAUTHORIZED',
-        data: { message: 'Invalid email or password' },
-      };
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
     const payload = { id: userInfo.id, email: userInfo.email };
     const token = JwtUtils.sign(payload)
     return { status: 'SUCCESSFUL', data: { token } };
   }
+
   public async getAllUsers(): Promise<ServiceResponse<IUser[]>> {
     const allUsers = await this.userModel.getAllUsers();
-    return {
-      status: 'SUCCESSFUL',
-      data: allUsers,
-    }
+    return { status: 'SUCCESSFUL', data: allUsers }
   }
 
   public async activateUser(id: number, activationCode: string)
@@ -80,4 +72,5 @@ export default class UserService {
     await this.userModel.activateUser(id)
     return { status: 'CREATE', data: { message: 'Status do usuário foi atualizado' } }
   }
+
 }

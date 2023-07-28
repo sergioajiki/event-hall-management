@@ -17,9 +17,6 @@ export default class EventUserModel implements IEventUserModel {
         [Op.and]: [{idEvent}, {idUser}]},
     })
     return !event ? null : event;
-    // if (!event) {
-    //   return null
-    // }
-    //  return event;
   }
+  
 }

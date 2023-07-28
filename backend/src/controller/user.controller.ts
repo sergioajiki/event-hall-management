@@ -29,4 +29,5 @@ export default class UserController {
     const response = await this.userService.activateUser(+userId, activationCode);
     return res.status(maptStatusHTTP(response.status)).json(response.data);
   }
+
 }

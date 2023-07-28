@@ -23,8 +23,6 @@ export default class EventUserService {
       return { status: 'NOT_FOUND', data: { message: 'User not found' } };  
     }
     const eventInfo = await this.eventUserModel.getSubscriptions(+idEvent, +isUser.id);
-    console.log('eventInfo', eventInfo);
-    
     if (eventInfo) {
       return { status: 'CONFLICT', data: { message: 'Usuário já está inscrito para este evento' } };
     }
@@ -32,4 +30,5 @@ export default class EventUserService {
     await this.eventUserModel.createSubscription(eventSubscription);
     return { status: 'CREATE', data: { message: 'Registration done' } };
   } 
+  
 }

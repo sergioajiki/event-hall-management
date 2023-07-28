@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
 import { PayloadSendMail } from '../Interfaces/Mail/PayloadSendMail';
-import buildActivationUrl from './activationUrlBuilder';
 
 const transport = nodemailer.createTransport({
   host: 'sandbox.smtp.mailtrap.io',
@@ -19,7 +18,7 @@ const sendEmail = async ({ email, username, activationUrl, subjectType }
   <h4>
   <a href="${activationUrl}" title="link para ativação">${activationUrl}</a>
   </h4>`;
-  const updateMsg = 'As informções do evento foram alteradas' 
+  const updateMsg = 'As informações do evento foram alteradas' 
   const emailInfo = {
     from: ADMINEMAIL,
     to: email,

@@ -13,4 +13,5 @@ export default class EventUserController {
     const response = await this.eventUserService.createSubscription(+idEvent, email);
     return res.status(maptStatusHTTP(response.status)).json(response.data)
   }
+  
 }

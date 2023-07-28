@@ -1,8 +1,8 @@
 import SequelizeEvents from '../database/models/sequelizeEvents';
+import SequelizeUsers from '../database/models/sequelizeUsers';
 import { Op } from 'sequelize';
 import { IEventModel } from '../Interfaces/Events/IEventModel';
 import { IEvent } from '../Interfaces/Events/IEvents';
-import SequelizeUsers from '../database/models/sequelizeUsers';
 import { IEventPayload } from '../Interfaces/Events/IEventPayload';
 import { ServiceMessage } from '../Interfaces/ServiceResponse';
 
@@ -27,20 +27,14 @@ export default class EventModel implements IEventModel {
     const event = await this.eventModel.findOne({
       where: { eventName }
     })
-    if (!event) {
-      return null
-    }
-     return event;
+    return !event ? null : event;
   }
 
   async getEventByDate(eventDate: Date): Promise<IEvent | null> {
     const event = await this.eventModel.findOne({
       where: { eventDate }
     })
-    if (!event) {
-      return null
-    }
-     return event;
+    return !event ? null : event;
   }
 
   async getEventsById(id: number): Promise<IEvent | null> {
@@ -53,10 +47,7 @@ export default class EventModel implements IEventModel {
         through: { attributes: []}
       }
     });
-    if (!event) {
-      return null
-    }
-     return event;
+    return !event ? null : event;
   }
 
   async getEmailByEventId(id: number): Promise<IEvent | null> {
@@ -71,10 +62,6 @@ export default class EventModel implements IEventModel {
     });
 
     return !event ? null : event.dataValues;
-    // if (!event) {
-    //   return null
-    // }
-    //  return event;
   }
 
   async createEvent(eventPayload: IEventPayload): Promise<IEvent> {
@@ -97,6 +84,6 @@ export default class EventModel implements IEventModel {
   })
   return {message: 'Event deleted'}
   }
-}
 
+}
  

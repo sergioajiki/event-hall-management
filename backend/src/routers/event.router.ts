@@ -38,4 +38,5 @@ router.delete(
   '/event/:id',
   (req: Request, res: Response) => eventController.deleteEventById(req, res),
 )
+
 export default router;

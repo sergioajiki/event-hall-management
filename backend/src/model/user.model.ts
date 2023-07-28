@@ -17,18 +17,12 @@ export default class UserModel implements IUserModel {
     const user = await this.model.findOne({
       where: { email }
     })
-    if(!user) {
-      return null
-    }
-    return user;
+    return !user ? null : user;
   }
 
   async getUserById(id: number): Promise<IUser | null> {
     const  user = await this.model.findByPk(id);
-    if(!user) {
-      return null
-    }
-    return user;
+    return !user ? null : user;
   }
 
   async activateUser(id: number): Promise<IUser | number> {
@@ -42,4 +36,5 @@ export default class UserModel implements IUserModel {
     const newUser = await this.model.create(userPayload);
     return newUser;
   }
+  
 }
