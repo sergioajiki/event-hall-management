@@ -7,6 +7,7 @@ import BcryptUtils from '../utils/bcryptUtils';
 import { Token } from '../Interfaces/Token';
 import { ILogin } from '../Interfaces/ILogin';
 import JwtUtils from '../utils/jwtUtils';
+import emailBullService from '../utils/emailBullService';
 
 export default class UserService {
   constructor(
@@ -16,25 +17,25 @@ export default class UserService {
 
   public async createUser(userPayload: IUserPayload): Promise<ServiceResponse<string>> {
     const { username, email, password } = userPayload;
-    const alreadyRegisteredEmail = await this.userModel.getUserByEmail(email);
-    if (alreadyRegisteredEmail) {
-        return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } }  
-    }
-    
+    const isEmail = await this.userModel.getUserByEmail(email);
+    if (isEmail) return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } };
+    const activationCode = activationCodeGenerator.generateActivationCode()
     const payload = {
       username,
       email,
       password: this.bcryptUtils.hashPassword(password),
       role: 'guest',
-      activationCode: activationCodeGenerator.generateActivationCode(),
+      activationCode,
       status: 0
     }
     await this.userModel.createUser(payload)
+    await emailBullService.emailQueue.add({email, username, activationCode})
       return {
         status: 'CREATE',
         data: { message: 'Usuário foi cadastrado! Verifique seu email para ativar sua conta' }
       }
   }
+
   public async login(loginInfo: ILogin): Promise<ServiceResponse<Token>> {
     const { email, password } = loginInfo
     const userInfo = await this.userModel.getUserByEmail(email);
