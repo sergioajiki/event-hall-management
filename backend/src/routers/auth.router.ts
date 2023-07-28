@@ -19,11 +19,6 @@ router.post(
 )
 
 router.get(
-  '/users',
-  (req: Request, res: Response) => userController.getAllUsers(req, res)
-)
-
-router.get(
   '/activate/:userId/:activationCode',
   (req: Request, res: Response) => userController.activateUser(req, res)
 )

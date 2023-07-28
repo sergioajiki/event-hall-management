@@ -7,11 +7,6 @@ const router = Router();
 
 router.get(
   '/event',
-  (req: Request, res: Response) => res.json({ message: 'Preparando endpoint de Eventos' }),
-)
-
-router.get(
-  '/event/open',
   (req: Request, res: Response) => eventController.getOpenvents(req, res),
 )
 
@@ -20,23 +15,25 @@ router.get(
   (req: Request, res: Response) => eventController.getAllEvents(req, res),
 )
 
-router.get(
-  '/event/:id',
-  (req: Request, res: Response) => eventController.getEventsById(req, res),
-)
-
 router.post(
   '/event',
   ValidationEvent.validateCreateEventFields,
   ValidationEvent.validateEventType,
   (req: Request, res: Response) => eventController.createEvent(req, res),
 )
+
+router.get(
+  '/event/:id',
+  (req: Request, res: Response) => eventController.getEventsById(req, res),
+)
+
 router.patch(
   '/event/:id',
   ValidationEvent.validateCreateEventFields,
   ValidationEvent.validateEventType,
   (req: Request, res: Response) => eventController.updateEventById(req, res),
 )
+
 router.delete(
   '/event/:id',
   (req: Request, res: Response) => eventController.deleteEventById(req, res),

@@ -50,7 +50,7 @@ export default class EventModel implements IEventModel {
       include: { 
         model: SequelizeUsers,
         as: 'users',
-        attributes: ['id', 'username'],
+        attributes: ['id', 'username', 'email'],
         through: { attributes: []}
       }
     });

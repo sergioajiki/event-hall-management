@@ -9,7 +9,8 @@ export default class EventService {
     private eventModel: IEventModel = new EventModel(),
   ) {} 
 
-  public async getAllEvents(): Promise<ServiceResponse<IEvent[]>> {
+  public async getAllEvents()
+  : Promise<ServiceResponse<IEvent[]>> {
     const allEvents = await this.eventModel.getAllEvents();
     return {
       status: 'SUCCESSFUL',
@@ -17,7 +18,8 @@ export default class EventService {
     }
   }
 
-  public async getOpenEvents(): Promise<ServiceResponse<IEvent[]>> {
+  public async getOpenEvents()
+  : Promise<ServiceResponse<IEvent[]>> {
     const openEvents = await this.eventModel.getOpenEvents();
     return {
       status: 'SUCCESSFUL',
@@ -25,15 +27,20 @@ export default class EventService {
     }
   }
 
-  public async getEventsById(id: number): Promise<ServiceResponse<IEvent | null>> {
+  public async getEventsById(id: number)
+  : Promise<ServiceResponse<IEvent | null>> {
     const eventById = await this.eventModel.getEventsById(+id);
+    if(!eventById) {
+      return { status: 'NOT_FOUND',  data: { message: 'Event not found' } } 
+    }
     return {
       status: 'SUCCESSFUL',
       data: eventById,  
     }
   }
 
-  public async createEvent(eventPayload: IEventPayload): Promise<ServiceResponse<ServiceMessage>> {
+  public async createEvent(eventPayload: IEventPayload)
+  : Promise<ServiceResponse<ServiceMessage>> {
     const {eventName, eventDate } = eventPayload
     const isEventName = await this.eventModel.getEventByName(eventName);
     if (isEventName) {
@@ -48,8 +55,8 @@ export default class EventService {
       status: 'CREATE',
       data: { message: 'Evento cadastrado com sucesso' }
     }
-
   }
+
   public async updateEventById(id: number, eventPayload: IEventPayload)
   : Promise<ServiceResponse<IEvent | number>> {
     const isEvent = await this.eventModel.getEventsById(+id);

@@ -17,7 +17,6 @@ export default class UserService {
   ) {}
 
   public async createUser(userPayload: IUserPayload): Promise<ServiceResponse<string>> {
-    // const { username, email, password } = userPayload;
     const isEmail = await this.userModel.getUserByEmail(userPayload.email);
     if (isEmail) return { status: 'CONFLICT',  data: { message: 'Email já está cadastrado' } };
     const payload = {
@@ -79,9 +78,6 @@ export default class UserService {
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid Activation Code' } }
     }
     await this.userModel.activateUser(id)
-    return {
-      status: 'CREATE',
-      data: { message: 'Status do usuário foi atualizado' },
-    }
-}
+    return { status: 'CREATE', data: { message: 'Status do usuário foi atualizado' } }
+  }
 }
