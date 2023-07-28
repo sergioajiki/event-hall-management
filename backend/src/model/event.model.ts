@@ -82,3 +82,4 @@ export default class EventModel implements IEventModel {
   }
 }
 
+ 

@@ -57,8 +57,7 @@ export default class EventService {
       return { status: 'NOT_FOUND', data: { message: 'Event not found' } };
     }  
     await this.eventModel.updateEventById(+id, eventPayload);
-    return { status: 'CREATE', data: { message: 'Evento foi atualizado' }
-    };
+    return { status: 'CREATE', data: { message: 'Evento foi atualizado' } };
   }
   
   public async deleteEventById(id: number)

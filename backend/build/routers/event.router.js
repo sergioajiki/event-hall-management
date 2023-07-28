@@ -13,4 +13,6 @@ router.get('/event/open', (req, res) => eventController.getOpenvents(req, res));
 router.get('/event/private', (req, res) => eventController.getAllEvents(req, res));
 router.get('/event/:id', (req, res) => eventController.getEventsById(req, res));
 router.post('/event', validationsEvent_1.default.validateCreateEventFields, validationsEvent_1.default.validateEventType, (req, res) => eventController.createEvent(req, res));
+router.patch('/event/:id', validationsEvent_1.default.validateCreateEventFields, validationsEvent_1.default.validateEventType, (req, res) => eventController.updateEventById(req, res));
+router.delete('/event/:id', (req, res) => eventController.deleteEventById(req, res));
 exports.default = router;
