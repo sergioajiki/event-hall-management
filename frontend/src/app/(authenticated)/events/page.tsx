@@ -1,15 +1,15 @@
 'use client'
-import Image from 'next/image'
-import styles from './page.module.css'
-import Event, { propsEvent } from './component/Event'
+import styles from '../../page.module.css'
+import Event from '../../component/Event'
+import { propsEvent } from '../../types/propsEvent';
 import { requestData } from '@/app/service/request';
-import Loading from './component/Loading';
+import Loading from '../../component/Loading';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-export default function Home() {
+export default function Events() {
+
   const [eventsList, setEventsList] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true)
-
   const getEvents = async (endpoint: string) => requestData(endpoint)
     .then((response) => setEventsList(response))
     .catch((error) => console.log(error));
@@ -23,17 +23,23 @@ export default function Home() {
   if(!eventsList.length){
     return <Loading />
   }
-  
-
-  // console.log('aqui do page', events());
-  
-  return (
+ return (
     <main className={styles.main}>
       <h1>Eventos</h1>
-
+      
       {
+        eventsList.map((event: propsEvent) => (
+          <li key={ event.id }>
+            <Link href={`/events/${event.id}`}>
+              {event.eventName}
+            </Link>
+          </li>
+        ))
+      }
+      {/* {
         eventsList.map((event: propsEvent, index): any => (
-         <Event key={index}
+         <Event key={event.id}
+          id={event.id}
           eventName={ event.eventName }
           eventDate={ event.eventDate }
           eventTime={ event.eventTime }
@@ -41,8 +47,7 @@ export default function Home() {
           description={ event.description }
           />) 
          )
-      }
-      
+      } */}
     </main>
-  )
+ )
 }

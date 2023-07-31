@@ -1,17 +1,9 @@
 'use client'
 import React from "react";
-
-export type propsEvent = {
-  eventName: string,
-  eventDate: string,
-  eventTime: string,
-  eventType: string,
-  description: string
-} 
-
+import { propsEvent } from "../types/propsEvent";
 
 export  default function Event({
-  eventName, eventDate, eventTime, eventType, description
+  id, eventName, eventDate, eventTime, eventType, description
 }: propsEvent) {
       return(
       <div>
