@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head />
       <body>
         <h1> Event Hall </h1>
@@ -26,11 +26,10 @@ export default function RootLayout({
             <li><Link href="/events">All Events</Link></li>
             <li><Link href="/login">Login</Link></li>
             <li><Link href="/users">Usuários</Link></li>
-
           </ul>
         </nav>
         <hr />
-        {children}
+      {children}  
       </body>
     </html>
   )

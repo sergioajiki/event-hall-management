@@ -12,7 +12,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <h1>Sistema Event Hall</h1>
-        {children}</body>
+        {children}
+      </body>
     </html>
   )
 }

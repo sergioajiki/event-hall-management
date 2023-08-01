@@ -1,53 +1,51 @@
 'use client'
+
 import { requestData } from '@/app/service/request'
 import { useEffect, useState } from 'react'
 import Loading from '@/app/component/Loading';
 import Event from '@/app/component/Event';
+import OtherEvents from '@/app/component/OtherEvents';
 // import { propsEvent } from '@/app/types/propsEvent';
 
-
-
-export default function EventId(
+export default function EventInfos(
    { params }: {params: {id: string}}, 
 ) {
-  const [eventById, setEventById] = useState([]);
+  const [eventById, setEventById]: any = useState([]);
 
   const getEvent = async (endpoint: string) => {
-    const response =  await requestData(endpoint)
-    .then((response ) => setEventById(response))
-    .catch((error) => console.log(error));
-  } 
-  
-  // => 
-    // .then((response ) => setEventById(response))
-    // .catch((error) => console.log(error));
+    const response =  await requestData(endpoint);
+    setEventById(response);
+  }
 
   useEffect(() => {
     const endpoint = `/event/${params.id}`;
     if(eventById.length === 0) {
-      getEvent(endpoint)
+      getEvent(endpoint);
     }
   }, [eventById, params.id])
-  // console.log('eventById', eventById);
+
   if(!eventById){
     return <Loading />
   }
-  // const { eventName, eventDate, eventTime, eventType, description } = eventById;
 
-  
-    return (
-      <main>
-        <h1>Event By Id</h1>
+  return (
+    <div>
+      <h1>Informações do Evento</h1>
         <Event
+          id={eventById.id}
           eventName={ eventById.eventName }
           eventDate={ eventById.eventDate }
           eventTime={ eventById.eventTime }
           eventType={ eventById.eventType }
           description={ eventById.description }
-          />
-
-      </main>
-        
-
-    )
+        />
+      <br/>
+      <hr/>
+      <br/>
+        <OtherEvents
+           currentEventId={ params.id}  
+        />
+    </div>
+    
+  )
 }

@@ -1,27 +1,93 @@
 'use client'
-import { useRouter } from "next/navigation"
+import React, { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
+import { Navigate } from 'react-router-dom'
+import Link from 'next/link';
+import { requestData , requestLogin, setToken } from '@/app/service/request';
+
 export default function LoginPage() {
   const router = useRouter()
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
+  const [failedTryLogin, setFailedTryLogin] = useState(false);
+  
+  
+  const login = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { token } = await requestLogin('/login', { email, password });
+    console.log('token', token);
+    
+      setToken(token)
+      const { role } = await requestLogin('/login/role', { email, password});
+      console.log('role', role);  
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+    
+      setIsLogged(true);
+    } catch (error) {
+      setFailedTryLogin(true);
+      setIsLogged(false);
+    }
+  };
+
+  useEffect (() => {
+    setFailedTryLogin(false);
+  }, [email, password])
+  
+  if (isLogged) {
+    return router.push('/events');
+  } 
+
   return (
-    <form 
-      onSubmit={(e) => {
-        router.push('/');
-        e.preventDefault();
-      }
-      
-      }>
+    <form>
       <div>
         <br />
-        <label>Email:</label>
-        <input />
+        <label
+          htmlFor="emailInput"
+        >Email:
+        <input
+          type="text"
+          value={ email }
+          onChange={ ({ target: {value }}) => setEmail(value) }
+          placeholder="Login"
+        />
+        </label>        
       </div>
       <div>
-        <label>Senha:</label>
-        <input />
+        <label
+         htmlFor="passwordInput"
+        >Senha:
+         <input
+            type="text"
+            value={ password }
+            onChange={ ({ target: { value }}) => setPassword(value) }
+            placeholder="Password"
+         />
+        </label>
+       
       </div>
+      { 
+        (failedTryLogin)
+          ? (
+              <p data-testid="login__input_invalid_login_alert">
+                {
+                  `O endereço de e-mail ou a senha não estão corretos.
+                   Por favor, tente novamente.`
+                }
+              </p>
+            )
+              : null
+          }
       <div>
-        <button type="submit">Entrar</button>
+        <button 
+        onClick={ (e) => login(e) }
+        type="submit"
+        >Entrar</button>
       </div>
     </form>
   )  
-}
+};
