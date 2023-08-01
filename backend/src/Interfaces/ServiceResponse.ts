@@ -1,4 +1,5 @@
 export type ServiceMessage = { message: string };
+export type Role = { role: string };
 
 type ServiceResponseErrorType = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT';
 
@@ -10,7 +11,7 @@ export type ServiceResponseError = {
 
 export type ServiceResponseSuccess<T> = {
   status: ServiceResponseSucessType,
-  data: T | ServiceMessage
+  data: T | ServiceMessage | Role
 };
 
 export type ServiceResponse<T> = ServiceResponseError | ServiceResponseSuccess<T>;

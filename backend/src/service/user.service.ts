@@ -6,7 +6,7 @@ import emailBullService from '../utils/emailBullService';
 import buildActivationUrl from '../utils/activationUrlBuilder';
 import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
-import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
+import { ServiceMessage, ServiceResponse, Role } from '../Interfaces/ServiceResponse';
 import { ILogin } from '../Interfaces/ILogin';
 import { Token } from '../Interfaces/Token';
 
@@ -56,6 +56,21 @@ export default class UserService {
     const allUsers = await this.userModel.getAllUsers();
     return { status: 'SUCCESSFUL', data: allUsers }
   }
+  
+  public async getRoleUserByEmail(loginInfo: ILogin): Promise<ServiceResponse<string>> {
+    const { email, password } = loginInfo
+    const userInfo = await this.userModel.getUserByEmail(email);
+    if (!userInfo){
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
+    }
+    const isValidPassword = this.bcryptUtils.checkPassword(password, userInfo.password);
+    if (!isValidPassword) {
+      return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
+    }
+    const { role } = userInfo;
+    return { status: 'SUCCESSFUL', data: { role } }
+  }
+
 
   public async activateUser(id: number, activationCode: string)
   : Promise<ServiceResponse<ServiceMessage>> {

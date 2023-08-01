@@ -7,7 +7,11 @@ const router = Router();
 
 router.get(
   '/login',
-  (req: Request, res: Response) => userController.login(req, res)
+  (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Origin','*')
+    res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
+    userController.login(req, res)}
 )
 
 router.post(
@@ -15,12 +19,31 @@ router.post(
   ValidationUser.validateCreateUserFields,
   ValidationUser.ValidatePasswordFormat,
   ValidationUser.ValidateEmailFormat,
-  (req: Request, res: Response) => userController.createUser(req, res)
+  (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Origin','*')
+    res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
+    userController.createUser(req, res)
+  }
+)
+
+router.get(
+  '/login/role',
+  (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Origin','*')
+    res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
+    userController.getRoleUserByEmail(req, res)}
 )
 
 router.get(
   '/activate/:userId/:activationCode',
-  (req: Request, res: Response) => userController.activateUser(req, res)
+  (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Origin','*')
+    res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
+    userController.activateUser(req, res)
+  }
 )
 
 export default router;
