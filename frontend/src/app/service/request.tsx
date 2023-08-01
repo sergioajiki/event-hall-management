@@ -14,9 +14,9 @@ export const requestData = async (endpoint: string) => {
   return response.data;
 };
 
-export const requestLogin = async (endpoint, body) => {
+export const postData = async (endpoint, body) => {
   const response = await api.post(endpoint,body);
-  console.log('aqui do resquest a data', response.data);
+  // console.log('aqui do resquest a data', response.data);
   return response.data;
 } 
 

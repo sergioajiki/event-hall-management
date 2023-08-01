@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { Navigate } from 'react-router-dom'
 import Link from 'next/link';
-import { requestData , requestLogin, setToken } from '@/app/service/request';
+import { requestData , postData, setToken } from '@/app/service/request';
 
 export default function LoginPage() {
   const router = useRouter()
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
@@ -18,11 +18,11 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const { token } = await requestLogin('/login', { email, password });
+      const { token } = await postData('/login', { email, password });
     console.log('token', token);
     
       setToken(token)
-      const { role } = await requestLogin('/login/role', { email, password});
+      const { role } = await postData('/login/role', { email, password});
       console.log('role', role);  
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
