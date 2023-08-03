@@ -4,5 +4,7 @@ export type propsEvent = {
     eventDate: string,
     eventTime: string,
     eventType: string,
-    description: string
+    description: string,
+    role: string,
+    email: string
   } 

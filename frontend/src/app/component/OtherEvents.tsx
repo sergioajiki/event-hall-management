@@ -3,6 +3,7 @@
 import { propsEvent } from '../types/propsEvent'
 import { requestData } from '@/app/service/request';
 import { useState, useEffect } from 'react';
+import EventAndDate from './EventAndDate';
 import Link from 'next/link';
 import Loading from './Loading';
 
@@ -30,21 +31,19 @@ export default function OtherEvents({ currentEventId }: PropsCurrEvent) {
   if(!otherEvents.length){
     return <Loading />
   }
-
   return (
-    <div>
-      <ul>
-        {
-          otherEvents.map((event: propsEvent) => (
-          <li key={ event.id }>
-            <Link href={`/events/${event.id}`}>
-             {event.eventName} {event.eventDate}           
-            </Link>
-          </li>
+    <>
+      {
+        otherEvents.map((event: propsEvent) => (
+          <EventAndDate
+            key={ event.id}
+            id={ event.id }
+            eventName={ event.eventName }
+            eventDate={ event.eventDate }
+          />
         ))
-        }
-      </ul>
-    </div>
+      }
+    </>
   )
 }
 

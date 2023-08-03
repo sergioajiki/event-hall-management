@@ -5,6 +5,7 @@ import { requestData } from '@/app/service/request';
 import Loading from '../../component/Loading';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import EventAndDate from '@/app/component/EventAndDate';
 
 export default function Events() {
 
@@ -28,17 +29,16 @@ export default function Events() {
  return (
     <>
       <h1>Eventos</h1>
-      <ul>
       {
         eventsList.map((event: propsEvent) => (
-          <li key={ event.id }>
-            <Link href={`/events/${event.id}`}>
-              {event.eventName} {event.eventDate}
-            </Link>
-          </li>
+          <EventAndDate
+            key={ event.id}
+            id={ event.id }
+            eventName={ event.eventName }
+            eventDate={ event.eventDate }
+          />
         ))
       }
-      </ul>
     </>
  )
 }

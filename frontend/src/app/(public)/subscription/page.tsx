@@ -11,10 +11,10 @@ export default function Subscription() {
   const [successTryCreate, setSuccessTryCreate] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const createUser = async (e) => {
+  const createUser = async (e: any) => {
     e.preventDefault();
     setSuccessTryCreate(false)
-    setErrorMessage(false)
+    setFailedTryCreate(false)
     
     const body = {
       username,
@@ -26,7 +26,7 @@ export default function Subscription() {
       console.log('userCreated', userCreated.message);
       setSuccessMessage(userCreated.message)
       setSuccessTryCreate(true)
-    } catch (error) {
+    } catch (error: any) {
       setErrorMessage(error.response.data.message)
       setFailedTryCreate(true);
     }

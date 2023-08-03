@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -27,7 +27,8 @@ export default function RootLayout({
             <li><Link href="/login">Login</Link></li>
             <li><Link href="/users">Usuários</Link></li>
             <li><Link href="/subscription">Cadastro de Usuários</Link></li>
-            <li><Link href="/events/createEvent">Cadastro de Usuários</Link></li>
+            <li><Link href="/events/createEvent">Cadastro de Eventos</Link></li>
+            {/* <li><Link href="/events/editEvent">update de Eventos</Link></li> */}
           </ul>
         </nav>
         <hr />

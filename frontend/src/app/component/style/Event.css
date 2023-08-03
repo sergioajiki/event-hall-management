@@ -1,0 +1,36 @@
+.EventComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(80, 80, 80);
+  border-radius: 10px;
+  box-shadow: -4px 9px 13px darkgray;
+  color: white;
+  height: 250px;
+  width: 250px;
+}
+
+.infos {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  height: 35%;
+  margin-left: 10px;
+  justify-content: space-around;
+  /* margin-top: -50px; */
+}
+
+.EditButton{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.EventEditButton {
+  display: flex;
+  
+  align-items: center;
+  align-self: center;
+}

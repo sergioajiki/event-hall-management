@@ -13,19 +13,19 @@ export default function LoginPage() {
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   
-  
-  const login = async (e) => {
+  const login = async (e: any) => {
     e.preventDefault();
 
     try {
       const { token } = await postData('/login', { email, password });
-    console.log('token', token);
+      console.log('token', token);
     
       setToken(token)
       const { role } = await postData('/login/role', { email, password});
       console.log('role', role);  
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
+      localStorage.setItem('email', email)
     
       setIsLogged(true);
     } catch (error) {

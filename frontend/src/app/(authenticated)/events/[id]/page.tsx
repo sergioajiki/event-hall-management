@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react'
 import Loading from '@/app/component/Loading';
 import Event from '@/app/component/Event';
 import OtherEvents from '@/app/component/OtherEvents';
-// import { propsEvent } from '@/app/types/propsEvent';
 
 export default function EventInfos(
    { params }: {params: {id: string}}, 
 ) {
+  const recoveredRole = localStorage.getItem('role') || '';
+  const recoveredEmail = localStorage.getItem('email') || '';
   const [eventById, setEventById]: any = useState([]);
 
   const getEvent = async (endpoint: string) => {
@@ -38,7 +39,10 @@ export default function EventInfos(
           eventTime={ eventById.eventTime }
           eventType={ eventById.eventType }
           description={ eventById.description }
+          role={recoveredRole}
+          email={recoveredEmail}
         />
+        
       <br/>
       <hr/>
       <br/>

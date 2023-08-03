@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { postData } from '@/app/service/request';
+import { updateData } from '@/app/service/request';
+import { requestData } from '@/app/service/request'
 
-export default function CreateEvent() {
-  
-  // const [] = useState('');  
+export default function EditEvent(
+  { params }: {params: {id: string}}, 
+  ) {
+
+  const [eventById, setEventById]: any = useState([]);  
   const [eventName, setEventName] = useState(''); 
   const [eventDate, setEventDate] = useState(''); 
   const [eventTime, setEventTime] = useState(''); 
@@ -16,11 +19,28 @@ export default function CreateEvent() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const createEvent = async (e:any) => {
+  const getEvent = async (endpoint: string) => {
+    const response =  await requestData(endpoint);
+    setEventById(response);
+    setEventName(response.eventName)
+    setEventDate(response.eventDate)
+    setEventTime(response.eventTime)
+    setEventType(response.eventType)
+    setDescription(response.description)
+  }
+  
+  useEffect(() => {
+    const endpoint = `/event/${params.id}`;
+      if(eventById.length === 0) {
+         getEvent(endpoint);
+      }
+  }, [eventById, params.id])
+  
+  const editEvent = async(e: any) => {
     e.preventDefault();
-
     setSuccessTryCreate(false)
     setFailedTryCreate(false)
+  
     const body = {
       eventName,
       eventDate,
@@ -28,17 +48,18 @@ export default function CreateEvent() {
       eventType,
       description
     }
+
     try {
-      const eventCreated = await postData('/event', body)
-      console.log('eventCreated', eventCreated.message);
-      setSuccessMessage(eventCreated.message)
+      const eventUpdated = await updateData(`/event/${params.id}`, body)
+      console.log('eventCreated', eventUpdated.message);
+      setSuccessMessage(eventUpdated.message)
       setSuccessTryCreate(true)
     } catch (error: any) {
       setErrorMessage(error.response.data.message)
       setFailedTryCreate(true);
     }
-
-  }
+  };
+  
   return (
     <form>
         <div>
@@ -101,14 +122,14 @@ export default function CreateEvent() {
       <div>
       <br />
         <label
-         htmlFor="descriptionInput"
+        htmlFor="descriptionInput"
         >Descrição:
-         <input
+        <input
             type="text"
             value={ description }
             onChange={ ({ target: { value }}) => setDescription(value) }
             placeholder="Descrição"
-         />
+        />
         </label>       
       </div>
       {
@@ -121,9 +142,9 @@ export default function CreateEvent() {
       <div>
       <br />
         <button 
-        onClick={ (e) => createEvent(e) }
+        onClick={ (e) => editEvent(e) }
         type="submit"
-        >Cadastrar Evento</button>
+        >Editar Evento</button>
       </div>
     </form>
   )  
