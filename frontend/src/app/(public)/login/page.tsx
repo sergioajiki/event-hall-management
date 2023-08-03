@@ -19,7 +19,7 @@ export default function LoginPage() {
     try {
       const { token } = await postData('/login', { email, password });
       console.log('token', token);
-    
+     
       setToken(token)
       const { role } = await postData('/login/role', { email, password});
       console.log('role', role);  
@@ -28,6 +28,7 @@ export default function LoginPage() {
       localStorage.setItem('email', email)
     
       setIsLogged(true);
+      // router.push('/events')
     } catch (error) {
       setFailedTryLogin(true);
       setIsLogged(false);
