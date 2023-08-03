@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { postData } from '@/app/service/request';
+
 export default function Subscription() {
-  // const [] = useState(''); 
+
   const [username, setUsername] = useState('');  
   const [email, setEmail] = useState('');  
   const [password, setPassword] = useState('');  
@@ -51,7 +52,8 @@ export default function Subscription() {
         <br />
         <label
           htmlFor="emailInput"
-        >Email:
+        >
+          Email:
         <input
           type="text"
           value={ email }
@@ -61,16 +63,17 @@ export default function Subscription() {
         </label>        
       </div>
       <div>
-      <br />
+        <br />
         <label
          htmlFor="passwordInput"
-        >Senha:
-         <input
-            type="text"
-            value={ password }
-            onChange={ ({ target: { value }}) => setPassword(value) }
-            placeholder="Password"
-         />
+        >
+          Senha:
+        <input
+          type="text"
+          value={ password }
+          onChange={ ({ target: { value }}) => setPassword(value) }
+          placeholder="Password"
+        />
         </label>       
       </div>
       {
@@ -81,11 +84,13 @@ export default function Subscription() {
       }
 
       <div>
-      <br />
+        <br />
         <button 
-        onClick={ (e) => createUser(e) }
-        type="submit"
-        >Cadastrar</button>
+          onClick={ (e) => createUser(e) }
+          type="submit"
+        >
+          Cadastrar
+        </button>
       </div>
     </form>
   )  

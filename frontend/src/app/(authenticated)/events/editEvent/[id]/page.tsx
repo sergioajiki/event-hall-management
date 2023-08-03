@@ -59,40 +59,43 @@ export default function EditEvent(
       setFailedTryCreate(true);
     }
   };
-  
+
   return (
     <form>
         <div>
-        <br />
-        <label
-          htmlFor="eventNameInput"
-        >Nome:
-        <input
-          type="text"
-          value={ eventName }
-          onChange={ ({ target: {value }}) => setEventName(value) }
-          placeholder="Nome"
-        />
-        </label>        
+          <br />
+          <label
+            htmlFor="eventNameInput"
+          >
+            Nome:
+          <input
+            type="text"
+            value={ eventName }
+            onChange={ ({ target: {value }}) => setEventName(value) }
+            placeholder="Nome"
+          />
+          </label>        
       </div>
-            <div>
-        <br />
-        <label
-          htmlFor="eventDateInput"
-        >Data:
-        <input
-          type="text"
-          value={ eventDate }
-          onChange={ ({ target: {value }}) => setEventDate(value) }
-          placeholder="Data"
-        />
-        </label>        
+      <div>
+          <br />
+          <label
+            htmlFor="eventDateInput"
+          >
+          Data:
+          <input
+            type="text"
+            value={ eventDate }
+            onChange={ ({ target: {value }}) => setEventDate(value) }
+            placeholder="Data"
+          />
+          </label>        
       </div>
       <div>
         <br />
         <label
           htmlFor="eventTimeInput"
-        >Horário:
+        >
+          Horário:
         <input
           type="text"
           value={ eventTime }
@@ -105,7 +108,8 @@ export default function EditEvent(
         <br />
         <label
           htmlFor="eventTypeInput"
-        >Tipo:
+        >
+          Tipo:
           <select
             id="eventType"
             name="type"
@@ -116,21 +120,21 @@ export default function EditEvent(
               <option value="registered">Registrado</option>
               <option value="private">Privado</option>
           </select> 
-        </label> 
-
+        </label>
       </div>
       <div>
-      <br />
+        <br />
         <label
-        htmlFor="descriptionInput"
-        >Descrição:
-        <input
+          htmlFor="descriptionInput"
+        >
+          Descrição:
+          <input
             type="text"
             value={ description }
             onChange={ ({ target: { value }}) => setDescription(value) }
             placeholder="Descrição"
-        />
-        </label>       
+          />
+          </label>       
       </div>
       {
         (successTryCreate) ? (<p>{ successMessage }</p> ) : null
@@ -140,11 +144,13 @@ export default function EditEvent(
       }
 
       <div>
-      <br />
-        <button 
-        onClick={ (e) => editEvent(e) }
-        type="submit"
-        >Editar Evento</button>
+        <br />
+          <button 
+            onClick={ (e) => editEvent(e) }
+            type="submit"
+          >
+            Editar Evento
+          </button>
       </div>
     </form>
   )  

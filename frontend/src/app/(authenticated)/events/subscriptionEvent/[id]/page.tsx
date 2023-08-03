@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { postData } from '@/app/service/request';
 
+type subscriptionEvent = {
+  id: number;
+  email: string
+}
 export default function SubscriptionEvent(
-  {id, email}
+  {id, email}: subscriptionEvent
 ) {
-  // const recoveredEmail = localStorage.getItem('email') || '';
-  
-  
-  // const [email, setEmail] = useState(recoveredEmail);
+
   const [failedTryCreate, setFailedTryCreate] = useState(false);
   const [successTryCreate, setSuccessTryCreate] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -45,7 +46,6 @@ export default function SubscriptionEvent(
       { 
         (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
       }
-
     </>
   )
 }

@@ -60,15 +60,15 @@ export default function LoginPage() {
       <div>
         <label
          htmlFor="passwordInput"
-        >Senha:
-         <input
+        >
+          Senha:
+          <input
             type="text"
             value={ password }
             onChange={ ({ target: { value }}) => setPassword(value) }
             placeholder="Password"
-         />
+        />
         </label>
-       
       </div>
       { 
         (failedTryLogin)

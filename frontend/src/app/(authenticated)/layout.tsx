@@ -28,7 +28,6 @@ export default function RootLayout({
             <li><Link href="/users">Usuários</Link></li>
             <li><Link href="/subscription">Cadastro de Usuários</Link></li>
             <li><Link href="/events/createEvent">Cadastro de Eventos</Link></li>
-            {/* <li><Link href="/events/editEvent">update de Eventos</Link></li> */}
           </ul>
         </nav>
         <hr />

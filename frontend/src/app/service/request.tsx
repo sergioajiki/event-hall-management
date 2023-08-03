@@ -44,3 +44,9 @@ export const updateData = async (endpoint: string, body: string | BodyEvent) => 
   return response.data;
 } 
 
+export const deleteData = async (endpoint: string) => {
+  const response = await api.delete(endpoint);
+  // console.log('aqui do resquest a data', response.data);
+  return response.data;
+} 
+

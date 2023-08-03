@@ -5,7 +5,6 @@ import { postData } from '@/app/service/request';
 
 export default function CreateEvent() {
   
-  // const [] = useState('');  
   const [eventName, setEventName] = useState(''); 
   const [eventDate, setEventDate] = useState(''); 
   const [eventTime, setEventTime] = useState(''); 
@@ -42,36 +41,39 @@ export default function CreateEvent() {
   return (
     <form>
         <div>
-        <br />
-        <label
-          htmlFor="eventNameInput"
-        >Nome:
-        <input
-          type="text"
-          value={ eventName }
-          onChange={ ({ target: {value }}) => setEventName(value) }
-          placeholder="Nome"
-        />
-        </label>        
-      </div>
-            <div>
-        <br />
-        <label
+          <br />
+          <label
+            htmlFor="eventNameInput"
+          >
+            Nome:
+          <input
+            type="text"
+            value={ eventName }
+            onChange={ ({ target: {value }}) => setEventName(value) }
+            placeholder="Nome"
+          />
+          </label>        
+        </div>
+        <div>
+          <br />
+          <label
           htmlFor="eventDateInput"
-        >Data:
-        <input
-          type="text"
-          value={ eventDate }
-          onChange={ ({ target: {value }}) => setEventDate(value) }
-          placeholder="Data"
-        />
-        </label>        
-      </div>
-      <div>
-        <br />
-        <label
-          htmlFor="eventTimeInput"
-        >Horário:
+          >
+            Data:
+          <input
+            type="text"
+            value={ eventDate }
+            onChange={ ({ target: {value }}) => setEventDate(value) }
+            placeholder="Data"
+          />
+          </label>        
+        </div>
+        <div>
+          <br />
+          <label
+            htmlFor="eventTimeInput"
+          >
+            Horário:
         <input
           type="text"
           value={ eventTime }
@@ -102,13 +104,14 @@ export default function CreateEvent() {
       <br />
         <label
          htmlFor="descriptionInput"
-        >Descrição:
-         <input
-            type="text"
-            value={ description }
-            onChange={ ({ target: { value }}) => setDescription(value) }
-            placeholder="Descrição"
-         />
+        >
+          Descrição:
+        <input
+          type="text"
+          value={ description }
+          onChange={ ({ target: { value }}) => setDescription(value) }
+          placeholder="Descrição"
+        />
         </label>       
       </div>
       {
@@ -117,13 +120,14 @@ export default function CreateEvent() {
       { 
         (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
       }
-
       <div>
-      <br />
+        <br />
         <button 
-        onClick={ (e) => createEvent(e) }
-        type="submit"
-        >Cadastrar Evento</button>
+          onClick={ (e) => createEvent(e) }
+          type="submit"
+          >
+            Cadastrar Evento
+        </button>
       </div>
     </form>
   )  
