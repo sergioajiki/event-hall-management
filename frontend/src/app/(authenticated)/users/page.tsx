@@ -1,9 +1,46 @@
 'use client'
 
-export default function UsersPage() {
+import { useEffect, useState } from 'react';
+import { requestData } from '@/app/service/request'
+import Loading from '../../component/Loading';
+import { propsUser } from '../../types/propsUser';
+import User from '@/app/component/User';
+
+
+
+export default function AllUsers() {
+  const [userList, setUserList] = useState([]);
+  const getAllUser = async(endpoint: string) => {
+    const response = await requestData(endpoint);
+    setUserList(response);
+  }
+
+  useEffect(() => {
+    const endpoint = '/users';
+    if(userList.length === 0) {
+      getAllUser(endpoint)
+    }
+  }, [userList]);
+
+  if(!userList.length) {
+    return <Loading />;
+  }
+
   return (
     <>
-      <h1>Página de Usuários</h1>
+      <h1>Usuários</h1>
+      {
+        userList.map((user: propsUser) => (
+          <User
+            key={ user.id }
+            id={ user.id }
+            username={ user.username }
+            email={ user.email }
+            role={ user.role }
+            status={ user.status}
+          />
+        ))
+      }
     </>
   )
 }

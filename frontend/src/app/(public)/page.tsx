@@ -1,9 +1,11 @@
 'use client'
+import React from 'react';
 
 export default function Home() {
   return (
-    <main>
-      <h1>Eventos</h1>
-    </main>
+    <div>Pagina Inicial</div>
   )
 }
+
+
+

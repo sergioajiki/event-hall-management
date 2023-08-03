@@ -17,6 +17,9 @@ export type BodyEmail = {
   email: string
 }
 
+export type BodyRole = {
+  role: string
+}
 
 const api = axios.create({
   baseURL: `http://localhost:${process.env.REACT_APP_API_PORT || '3001'}`,
@@ -38,7 +41,7 @@ export const postData = async (endpoint: string, body: BodyEmail | BodyEvent | B
   return response.data;
 } 
 
-export const updateData = async (endpoint: string, body: string | BodyEvent) => {
+export const updateData = async (endpoint: string, body: string | BodyEvent | BodyRole) => {
   const response = await api.patch(endpoint,body);
   // console.log('aqui do resquest a data', response.data);
   return response.data;

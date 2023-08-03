@@ -4,7 +4,7 @@ import { propsEvent } from '../../types/propsEvent';
 import { requestData } from '@/app/service/request';
 import Loading from '../../component/Loading';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import EventAndDate from '@/app/component/EventAndDate';
 
 export default function Events() {
