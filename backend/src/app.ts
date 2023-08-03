@@ -1,5 +1,6 @@
 import express, { Request, Response }  from 'express';
 import router from './routers'; 
+import cors from 'cors'
 
 
 class App {
@@ -7,6 +8,7 @@ class App {
 
   constructor() {
     this.app = express();
+    this.app.use(cors())
     this.app.use(express.json());
     // this.config();
 

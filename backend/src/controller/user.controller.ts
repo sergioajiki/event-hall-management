@@ -36,4 +36,16 @@ export default class UserController {
     return res.status(maptStatusHTTP(response.status)).json(response.data);
   }
 
+  public async updateRoleUserById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const payload = req.body;
+    const response = await this.userService.updateRoleUserById(+id, payload);
+    return res.status(maptStatusHTTP(response.status)).json(response.data)
+  }
+
+  public async getUserById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const userById = await this.userService.getUserById(+id);
+    return res.status(maptStatusHTTP(userById.status)).json(userById.data)
+  }
 }

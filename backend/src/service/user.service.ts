@@ -6,7 +6,7 @@ import emailBullService from '../utils/emailBullService';
 import buildActivationUrl from '../utils/activationUrlBuilder';
 import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
-import { ServiceMessage, ServiceResponse, Role } from '../Interfaces/ServiceResponse';
+import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
 import { ILogin } from '../Interfaces/ILogin';
 import { Token } from '../Interfaces/Token';
 
@@ -23,7 +23,7 @@ export default class UserService {
       username: userPayload.username,
       email: userPayload.email,
       password: this.bcryptUtils.hashPassword(userPayload.password),
-      role: 'guest',
+      role: 'client',
       activationCode: activationCodeGenerator.generateActivationCode(),
       status: 0
     }
@@ -35,6 +35,24 @@ export default class UserService {
         status: 'CREATE',
         data: { message: 'Usuário foi cadastrado! Verifique seu email para ativar sua conta' }
       }
+  }
+
+  public async getUserById(id: number)
+  : Promise<ServiceResponse<IUser | null>> {
+  const userById = await this.userModel.getUserById(+id);
+  if (!userById) {
+    return { status: 'NOT_FOUND', data: { message: 'User not found' } }
+  }
+  return { status: 'SUCCESSFUL', data: userById }
+}
+  public async updateRoleUserById(id: number, userPayload: IUserPayload)
+  : Promise<ServiceResponse<IUser | number>> {
+    const isUser = await this.userModel.getUserById(+id);
+    if (!isUser) {
+      return { status: 'NOT_FOUND', data: { message: 'User not found' } };
+    }
+    await this.userModel.updateUserById(+id, userPayload);
+    return { status: 'CREATE', data: { message: 'Usuário foi atualizado' } };
   }
 
   public async login(loginInfo: ILogin): Promise<ServiceResponse<Token>> {

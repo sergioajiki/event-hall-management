@@ -7,4 +7,5 @@ export interface IUserModel {
   createUser(UserPayload: IUserPayload): Promise<IUser>
   getUserById(id: number): Promise<IUser | null>
   activateUser(id: number):  Promise<IUser | number>
+  updateUserById(id: number, userPayload: IUserPayload): Promise<IUser | number>
 }

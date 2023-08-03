@@ -1,5 +1,5 @@
 import SequelizeUsers from '../database/models/sequelizeUsers';
-import { IUser } from '../Interfaces/Users/IUser';
+import { IUser, IUserPayload } from '../Interfaces/Users/IUser';
 import { IUserModel } from '../Interfaces/Users/IUserModel';
 
 
@@ -21,7 +21,9 @@ export default class UserModel implements IUserModel {
   }
 
   async getUserById(id: number): Promise<IUser | null> {
-    const  user = await this.model.findByPk(id);
+    const  user = await this.model.findByPk(id, {
+      attributes: {exclude: ['password', 'activationCode']}
+    });
     return !user ? null : user;
   }
 
@@ -36,5 +38,14 @@ export default class UserModel implements IUserModel {
     const newUser = await this.model.create(userPayload);
     return newUser;
   }
+
+  async updateUserById(id: number, userPayload: IUserPayload)
+  : Promise<IUser | number> {
+  const [updatedUser] = await this.model.update(userPayload, {
+    where: { id },
+  })
+  return updatedUser;
+}
   
+
 }

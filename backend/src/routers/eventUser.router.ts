@@ -5,7 +5,7 @@ const eventUserController = new EventUserController();
 const router = Router();
 
 router.post(
-  '/subscription/:idEvent',
+  '/subscriptionEvent/:idEvent',
   ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => {
     res.header('Access-Control-Allow-Credentials', 'true')

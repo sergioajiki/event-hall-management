@@ -14,7 +14,7 @@ export default class ValidationUser {
 	: Response | void {
     const { password } = req.body;
     if (password.length < 6 || password.length > 12) {
-      return res.status(400).json({ message: 'Must be 6 to 12 characters' });
+      return res.status(400).json({ message: 'Password must be 6 to 12 characters' });
     }
     next();
   }
@@ -25,5 +25,23 @@ export default class ValidationUser {
     }
     next();
   }
+  static validateLoginFields(req: Request, res: Response, next: NextFunction)
+	: Response | void {
+		const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: 'All fields must be filled' });
+    }
+		next();
+	}
+  static validateUpdateUserFields(req: Request, res: Response, next: NextFunction)
+	: Response | void {
+		const { role } = req.body;
+    console.log( role);
+    
+    if (!role) {
+      return res.status(400).json({ message: 'All fields must be filled' });
+    }
+		next();
+	}
 	
 }

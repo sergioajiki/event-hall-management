@@ -8,7 +8,7 @@ export default {
       [
         {
          username: 'Sergio',
-         email: 'emailTeste@teste.com',
+         email: 'teste@teste.com',
          password: '$2b$10$4ESD17XkJSrbDX/qNZbjJOmb4iGGLMYjUmQpP7RJCog/WwrKsxcve',
          role: 'admin',
          activation_code: 'c495df9f2aaa6ba9243b263469be22cd',
@@ -28,7 +28,7 @@ export default {
           username: 'UserTwo',
           email: 'userTwo@teste.com',
           password: 'r56zUEUb3cokkEBBNYtTeOkZxdDrw3qVYgA5BjuwSt1XeT2gMwce',
-          role: 'guest',
+          role: 'client',
           activation_code: 'colocar o codigo para ativar',
           status: 0, 
          },

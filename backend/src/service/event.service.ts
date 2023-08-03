@@ -62,7 +62,7 @@ export default class EventService {
       return  { email, username, activationUrl, subjectType: 'update' }
     });
     registeredAtEvent?.forEach(async (sendTo) => {
-      await emailBullService.emailQueue.add(sendTo) 
+      await emailBullService.emailQueue.add(sendTo)
     })
     return { status: 'CREATE', data: { message: 'Evento foi atualizado' } };
   }

@@ -5,9 +5,12 @@ import ValidationUser from '../midllewares/validationsUser';
 const userController = new UserController();
 const router = Router();
 
-router.get(
+router.post(
   '/login',
+  ValidationUser.validateLoginFields,
+  ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Headers', 'X-Custom-Header, Content-Type')
     res.header('Access-Control-Allow-Credentials', 'true')
     res.header('Access-Control-Allow-Origin','*')
     res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
@@ -20,6 +23,7 @@ router.post(
   ValidationUser.ValidatePasswordFormat,
   ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Headers', 'X-Custom-Header, Content-Type')
     res.header('Access-Control-Allow-Credentials', 'true')
     res.header('Access-Control-Allow-Origin','*')
     res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),
@@ -27,9 +31,12 @@ router.post(
   }
 )
 
-router.get(
+router.post(
   '/login/role',
+  ValidationUser.validateLoginFields,
+  ValidationUser.ValidateEmailFormat,
   (req: Request, res: Response) => {
+    res.header('Access-Control-Allow-Headers', 'X-Custom-Header, Content-Type')
     res.header('Access-Control-Allow-Credentials', 'true')
     res.header('Access-Control-Allow-Origin','*')
     res.header('Access-Control-Allow-Methods','GET,OPTIONS,PATCH,DELETE,POST,PUT'),

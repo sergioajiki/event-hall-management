@@ -15,9 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const routers_1 = __importDefault(require("./routers"));
+const cors_1 = __importDefault(require("cors"));
 class App {
     constructor() {
         this.app = (0, express_1.default)();
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         // this.config();
         this.app.get('/', (_req, res) => __awaiter(this, void 0, void 0, function* () {
