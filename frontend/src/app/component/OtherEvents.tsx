@@ -8,10 +8,11 @@ import Link from 'next/link';
 import Loading from './Loading';
 
 type PropsCurrEvent = {
-  currentEventId: string;
+  currentEventId: string,
+  role: string
 }
 
-export default function OtherEvents({ currentEventId }: PropsCurrEvent) {
+export default function OtherEvents({ currentEventId, role }: PropsCurrEvent) {
   const [otherEvents, setOtherEvents] = useState([]);
   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,11 +23,15 @@ export default function OtherEvents({ currentEventId }: PropsCurrEvent) {
   }
   
   useEffect(() => {
-    const endpoint = '/event';
+    let endpoint = '/event';
+    if(role === 'admin' || role === 'guest') {
+      endpoint = '/event/private'
+    }
+    
     if(otherEvents.length === 0) {
       getOtherEvents(endpoint)
     }
-  }, [getOtherEvents, otherEvents]);
+  }, [getOtherEvents, otherEvents, role]);
 
   if(!otherEvents.length){
     return <Loading />

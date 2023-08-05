@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { propsEvent } from "../types/propsEvent";
 import { useRouter } from "next/navigation";
 import SubscriptionEvent from "../(authenticated)/events/subscriptionEvent/[id]/page";
@@ -10,6 +10,12 @@ export default function Event({
   id, eventName, eventDate, eventTime, eventType, description, role, email
 }: propsEvent) {
   const router = useRouter();
+  const [isLogged, setIsLogged] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token') || false;
+    if (token) setIsLogged(true);
+  }, [])
 
   return(
     <div className="EventComponent">
@@ -20,10 +26,21 @@ export default function Event({
         <span>Tipo: { eventType }</span>
         <span>{ description }</span>
       </div>
-      <SubscriptionEvent 
-        id={id}
-        email={email}
-      />
+      {
+        (eventType === 'free' ) ? null 
+        : (((isLogged)?
+          <SubscriptionEvent 
+            id={id}
+            email={email}
+          />  
+          :  <button
+          onClick={() => router.push('/login')}
+        >
+          Fazer Login
+        </button>
+          ))
+      }
+      
       {
         (role === 'admin') ? (
         <div className="EditButton">          

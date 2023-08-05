@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { postData } from '@/app/service/request';
 
-export default function Subscription() {
+export default function SubscriptionUser() {
 
   const [username, setUsername] = useState('');  
   const [email, setEmail] = useState('');  
@@ -14,6 +14,7 @@ export default function Subscription() {
   const [successMessage, setSuccessMessage] = useState('');
   const createUser = async (e: any) => {
     e.preventDefault();
+
     setSuccessTryCreate(false)
     setFailedTryCreate(false)
     
@@ -27,6 +28,9 @@ export default function Subscription() {
       console.log('userCreated', userCreated.message);
       setSuccessMessage(userCreated.message)
       setSuccessTryCreate(true)
+      setUsername('')
+      setEmail('')
+      setPassword('')
     } catch (error: any) {
       setErrorMessage(error.response.data.message)
       setFailedTryCreate(true);
@@ -34,6 +38,7 @@ export default function Subscription() {
   }
   
   return (
+    <>
     <form>
       <div>
         <br />
@@ -93,6 +98,7 @@ export default function Subscription() {
         </button>
       </div>
     </form>
+    </>
   )  
   
 }

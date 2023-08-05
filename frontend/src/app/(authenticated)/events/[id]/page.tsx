@@ -9,14 +9,22 @@ import OtherEvents from '@/app/component/OtherEvents';
 export default function EventInfos(
    { params }: {params: {id: string}}, 
 ) {
-  const recoveredRole = localStorage.getItem('role') || '';
-  const recoveredEmail = localStorage.getItem('email') || '';
+
   const [eventById, setEventById]: any = useState([]);
+  const [role, setRole] = useState('');
+  const [email, setEmail] = useState('');
 
   const getEvent = async (endpoint: string) => {
     const response =  await requestData(endpoint);
     setEventById(response);
   }
+
+  useEffect(() => {
+  const recoveredRole = localStorage.getItem('role') || '';
+  const recoveredEmail = localStorage.getItem('email') || '';
+  setRole(recoveredRole)
+  setEmail(recoveredEmail)
+  }, [])
 
   useEffect(() => {
     const endpoint = `/event/${params.id}`;
@@ -29,6 +37,8 @@ export default function EventInfos(
     return <Loading />
   }
 
+  console.log('email', email, 'role', role);
+
   return (
     <div>
       <h1>Informações do Evento</h1>
@@ -39,15 +49,13 @@ export default function EventInfos(
           eventTime={ eventById.eventTime }
           eventType={ eventById.eventType }
           description={ eventById.description }
-          role={recoveredRole}
-          email={recoveredEmail}
+          role={ role }
+          email={ email }
         />
-        
-      <br/>
       <hr/>
-      <br/>
         <OtherEvents
-           currentEventId={ params.id}  
+           currentEventId={ params.id}
+           role={ role }  
         />
     </div>
     

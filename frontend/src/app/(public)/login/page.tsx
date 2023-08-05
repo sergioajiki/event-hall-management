@@ -1,16 +1,15 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
-import { Navigate } from 'react-router-dom'
-import Link from 'next/link';
-import { requestData , postData, setToken } from '@/app/service/request';
+import { postData, setToken } from '@/app/service/request';
+import SubscriptionUser from '../subscription/page';
 
-export default function LoginPage() {
+export default function LoginPage(): JSX.Element {
   const router = useRouter()
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(false)
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   
   const login = async (e: any) => {
@@ -21,14 +20,20 @@ export default function LoginPage() {
       console.log('token', token);
      
       setToken(token)
-      const { role } = await postData('/login/role', { email, password});
+      const { role, status } = await postData('/login/role', { email, password});
       console.log('role', role);  
+      console.log(status);
+
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
       localStorage.setItem('email', email)
-    
+      if (status === 0) {
+          setFailedTryLogin(true);
+          setIsLogged(false);
+          console.log('status inativo', status);
+          
+      }
       setIsLogged(true);
-      // router.push('/events')
     } catch (error) {
       setFailedTryLogin(true);
       setIsLogged(false);
@@ -39,14 +44,16 @@ export default function LoginPage() {
     setFailedTryLogin(false);
   }, [email, password])
   
-  if (isLogged) {
-    return router.push('/events');
-  } 
+  // if (isLogged) {
+  //   return router.push('/events');
+  // } 
 
   return (
+    <>
     <form>
+   
       <div>
-        <br />
+        <h2>Login</h2>
         <label
           htmlFor="emailInput"
         >Email:
@@ -77,7 +84,8 @@ export default function LoginPage() {
               <p data-testid="login__input_invalid_login_alert">
                 {
                   `O endereço de e-mail ou a senha não estão corretos.
-                   Por favor, tente novamente.`
+                   Verifique seu email para ativar a conta.
+                  `
                 }
               </p>
             )
@@ -90,5 +98,12 @@ export default function LoginPage() {
         >Entrar</button>
       </div>
     </form>
+    <div>
+      <h2> Primeiro Acesso </h2>
+      <SubscriptionUser />
+      
+    </div>
+
+    </>
   )  
 };

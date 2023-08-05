@@ -16,9 +16,6 @@ export default function Events() {
     const response = await requestData(endpoint)
     setEventsList(response)
   }
-
-  // 
-  // 
   
   useEffect(() => {
     const token = localStorage.getItem('token') || false;
