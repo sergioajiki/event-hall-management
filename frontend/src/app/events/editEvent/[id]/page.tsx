@@ -2,11 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { updateData } from '@/app/service/request';
-import { requestData } from '@/app/service/request'
+import { requestData } from '@/app/service/request';
+import { useRouter } from "next/navigation";
+import '@/app/events/createEvent/style/createEvent.css'
 
 export default function EditEvent(
   { params }: {params: {id: string}}, 
   ) {
+  const router = useRouter();
 
   const [eventById, setEventById]: any = useState([]);  
   const [eventName, setEventName] = useState(''); 
@@ -61,9 +64,9 @@ export default function EditEvent(
   };
 
   return (
-    <form>
+    <form className="formCreateEvent">
+      <span className="inputs">
         <div>
-          <br />
           <label
             htmlFor="eventNameInput"
           >
@@ -73,11 +76,11 @@ export default function EditEvent(
             value={ eventName }
             onChange={ ({ target: {value }}) => setEventName(value) }
             placeholder="Nome"
+            className="inputEvent"
           />
           </label>        
       </div>
       <div>
-          <br />
           <label
             htmlFor="eventDateInput"
           >
@@ -87,11 +90,11 @@ export default function EditEvent(
             value={ eventDate }
             onChange={ ({ target: {value }}) => setEventDate(value) }
             placeholder="Data"
+            className="inputEvent"
           />
           </label>        
       </div>
       <div>
-        <br />
         <label
           htmlFor="eventTimeInput"
         >
@@ -101,11 +104,11 @@ export default function EditEvent(
           value={ eventTime }
           onChange={ ({ target: {value }}) => setEventTime(value) }
           placeholder="Horário"
+          className="inputEvent"
         />
         </label>        
       </div>
       <div>
-        <br />
         <label
           htmlFor="eventTypeInput"
         >
@@ -114,6 +117,7 @@ export default function EditEvent(
             id="eventType"
             name="type"
             value={ eventType }
+            className="inputEvent"
             onChange={ ({ target: {value }}) => setEventType(value) }
           >
               <option value="free">Livre</option>
@@ -123,7 +127,6 @@ export default function EditEvent(
         </label>
       </div>
       <div>
-        <br />
         <label
           htmlFor="descriptionInput"
         >
@@ -133,25 +136,34 @@ export default function EditEvent(
             value={ description }
             onChange={ ({ target: { value }}) => setDescription(value) }
             placeholder="Descrição"
+            className="inputEvent"
           />
           </label>       
       </div>
-      {
-        (successTryCreate) ? (<p>{ successMessage }</p> ) : null
-      }
-      { 
-        (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
-      }
-
+      </span>
       <div>
         <br />
           <button 
             onClick={ (e) => editEvent(e) }
             type="submit"
-          >
+            className="buttonRegister"
+            >
             Editar Evento
           </button>
+          <button
+          onClick={() => router.push('/')}
+          type="button"
+          className="buttonRegister"
+          >
+          Home
+        </button>
       </div>
+            {
+              (successTryCreate) ? (<p>{ successMessage }</p> ) : null
+            }
+            { 
+              (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
+            }
     </form>
   )  
 }

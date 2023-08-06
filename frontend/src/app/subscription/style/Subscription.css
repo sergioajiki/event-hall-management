@@ -1,0 +1,50 @@
+.formSubscription {
+    align-items: center;
+    border: 1px solid green;
+    border-radius: 10px;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 360px;  
+    height: 500px;
+  }
+
+  .inputs {
+    margin-left: 10px;
+  }
+  .inputLogin {
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: blue;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 40px;
+    margin-bottom: 5px;
+    width: 330px;
+  }
+  
+  .buttonRegister {
+    background: blue;
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    height: 46px;
+    transition-duration: 0.4s;
+    margin-top: 10px;
+    width: 336px;
+  }
+  
+  .buttonRegister:hover {
+    background: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    height: 46px;
+    width: 336px;
+  }  

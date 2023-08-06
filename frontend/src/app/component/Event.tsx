@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { propsEvent } from "../types/propsEvent";
 import { useRouter } from "next/navigation";
-import SubscriptionEvent from "../(authenticated)/events/subscriptionEvent/[id]/page";
+import SubscriptionEvent from "../events/subscriptionEvent/[id]/page";
 import './style/Event.css'
-import DeleteEvent from "../(authenticated)/events/deleteEvent/[id]/page";
+import DeleteEvent from "../events/deleteEvent/[id]/page";
+
 
 export default function Event({
   id, eventName, eventDate, eventTime, eventType, description, role, email
@@ -18,6 +19,7 @@ export default function Event({
   }, [])
 
   return(
+    <>
     <div className="EventComponent">
       <h2>{ eventName }</h2>
       <div className="infos">
@@ -57,5 +59,6 @@ export default function Event({
         ) : null
       }
     </div>
+    </>
     )
 }

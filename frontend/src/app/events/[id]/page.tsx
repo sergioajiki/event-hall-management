@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Loading from '@/app/component/Loading';
 import Event from '@/app/component/Event';
 import OtherEvents from '@/app/component/OtherEvents';
+import Header from '@/app/component/Header';
 
 export default function EventInfos(
    { params }: {params: {id: string}}, 
@@ -40,7 +41,9 @@ export default function EventInfos(
   console.log('email', email, 'role', role);
 
   return (
+    <>
     <div>
+      <Header/>
       <h1>Informações do Evento</h1>
         <Event
           id={eventById.id}
@@ -58,6 +61,6 @@ export default function EventInfos(
            role={ role }  
         />
     </div>
-    
+    </>
   )
 }

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { postData } from '@/app/service/request';
+import './style/Subscription.css'
 
 export default function SubscriptionUser() {
 
@@ -39,9 +40,11 @@ export default function SubscriptionUser() {
   
   return (
     <>
-    <form>
+
+    <form className="formSubscription">
+    <h2> Primeiro Acesso </h2>
+      <span className='inputs'>
       <div>
-        <br />
         <label
           htmlFor="usernameInput"
         >Nome:
@@ -50,11 +53,11 @@ export default function SubscriptionUser() {
           value={ username }
           onChange={ ({ target: {value }}) => setUsername(value) }
           placeholder="Nome"
+          className="inputLogin"
         />
         </label>        
       </div>
       <div>
-        <br />
         <label
           htmlFor="emailInput"
         >
@@ -64,11 +67,11 @@ export default function SubscriptionUser() {
           value={ email }
           onChange={ ({ target: {value }}) => setEmail(value) }
           placeholder="Email"
+          className="inputLogin"
         />
         </label>        
       </div>
       <div>
-        <br />
         <label
          htmlFor="passwordInput"
         >
@@ -78,25 +81,27 @@ export default function SubscriptionUser() {
           value={ password }
           onChange={ ({ target: { value }}) => setPassword(value) }
           placeholder="Password"
+          className="inputLogin"
         />
-        </label>       
+        </label>     
       </div>
-      {
-        (successTryCreate) ? (<p>{ successMessage }</p> ) : null
-      }
-      { 
-        (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
-      }
-
+      </span>  
       <div>
-        <br />
         <button 
           onClick={ (e) => createUser(e) }
           type="submit"
-        >
+          className="buttonRegister"
+          >
           Cadastrar
         </button>
+          {
+            (successTryCreate) ? (<p>{ successMessage }</p> ) : null
+          }
+          { 
+            (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
+          }
       </div>
+      
     </form>
     </>
   )  

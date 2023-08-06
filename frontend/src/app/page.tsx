@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
-import Events from '@/app/(authenticated)/events/page'
-import Header from '../component/Header';
+import Events from '@/app/events/page'
+import Header from './component/Header';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
@@ -10,9 +10,8 @@ export default function Home() {
 
   return (
     <>
-      {/* <Header/> */}
+      <Header/>
       <Events/>
-
       <p>Faça o cadastro para visualizar novos eventos e confirmar a presença</p> 
        {/* <button
         onClick={() => router.push('/login')}   

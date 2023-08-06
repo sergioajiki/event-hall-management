@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { requestData } from '@/app/service/request'
-import Loading from '../../component/Loading';
-import { propsUser } from '../../types/propsUser';
+import Loading from '@/app/component/Loading';
+import { propsUser } from '@/app/types/propsUser';
 import User from '@/app/component/User';
 
 

@@ -40,6 +40,7 @@ export default function SelectAccess({id, previosRole}: updateBody) {
             name="type"
             value={ role }
             onChange={ ({ target: {value }}) => setRole(value) }
+            className="inputType"
           >
               <option value="client">client</option>
               <option value="guest">guest</option>
@@ -48,6 +49,7 @@ export default function SelectAccess({id, previosRole}: updateBody) {
         </label> 
         <button
         onClick={ (e) => updateUserLevel(e)}
+        className="buttonUpdateType"
         >
           Alterar Acesso
         </button>

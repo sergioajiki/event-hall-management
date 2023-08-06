@@ -1,8 +1,8 @@
 'use client'
 
-import { propsEvent } from '../../types/propsEvent';
+import { propsEvent } from '../types/propsEvent';
 import { requestData } from '@/app/service/request';
-import Loading from '../../component/Loading';
+import Loading from '../component/Loading';
 import { useState, useEffect } from 'react';
 import EventAndDate from '@/app/component/EventAndDate';
 
