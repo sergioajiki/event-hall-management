@@ -8,7 +8,7 @@ export default class UserModel implements IUserModel {
   
   async getAllUsers(): Promise<IUser[]> {
     const allUsers = await this.model.findAll({
-      attributes: {exclude: ['password']}
+      attributes: {exclude: ['password', 'activationCode']}
     });
     return allUsers;
   }
@@ -22,7 +22,7 @@ export default class UserModel implements IUserModel {
 
   async getUserById(id: number): Promise<IUser | null> {
     const  user = await this.model.findByPk(id, {
-      attributes: {exclude: ['password', 'activationCode']}
+      attributes: {exclude: ['password']}
     });
     return !user ? null : user;
   }
@@ -43,6 +43,7 @@ export default class UserModel implements IUserModel {
   : Promise<IUser | number> {
   const [updatedUser] = await this.model.update(userPayload, {
     where: { id },
+    
   })
   return updatedUser;
 }

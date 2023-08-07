@@ -32,7 +32,10 @@ export default class UserController {
 
   public async activateUser(req: Request, res: Response): Promise<Response> {
     const { userId, activationCode } = req.params;
-    const response = await this.userService.activateUser(+userId, activationCode);
+    console.log(userId, 'act', activationCode);
+    
+    
+    const response = await this.userService.activateUser(Number(userId), activationCode);
     return res.status(maptStatusHTTP(response.status)).json(response.data);
   }
 

@@ -6,7 +6,7 @@ import 'dotenv/config';
 export default class JwtUtils {
     // private static jwtSecret = process.env.JWT_SECRET || 'jwt_secret' ;
     private static jwtSecret = process.env.JWT_SECRET as Secret
-    private static jwtOptions = { expiresIn: '10d'}
+    private static jwtOptions = { expiresIn: '30m'}
 
     public static sign(payload: TokenPayload): string {
       return jwt.sign(payload, this.jwtSecret, this.jwtOptions);

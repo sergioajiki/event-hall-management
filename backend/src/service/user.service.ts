@@ -45,6 +45,7 @@ export default class UserService {
   }
   return { status: 'SUCCESSFUL', data: userById }
 }
+
   public async updateRoleUserById(id: number, userPayload: IUserPayload)
   : Promise<ServiceResponse<IUser | number>> {
     const isUser = await this.userModel.getUserById(+id);
@@ -52,6 +53,12 @@ export default class UserService {
       return { status: 'NOT_FOUND', data: { message: 'User not found' } };
     }
     await this.userModel.updateUserById(+id, userPayload);
+    
+    console.log('updaterle', userPayload, 'antigo', isUser);
+    const { email, username } = isUser
+    const { role } = userPayload
+    await emailBullService.emailQueue.add({email, username, role, subjectType: 'changeRole'})
+
     return { status: 'CREATE', data: { message: 'Usuário foi atualizado' } };
   }
 
@@ -65,6 +72,10 @@ export default class UserService {
     if (!isValidPassword) {
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
+    if (userInfo.status === 0) {
+      return { status: 'UNAUTHORIZED', data: { message: 'Verifique o email para ativar a conta' } };
+    }
+    
     const payload = { id: userInfo.id, email: userInfo.email };
     const token = JwtUtils.sign(payload)
     return { status: 'SUCCESSFUL', data: { token } };
@@ -85,10 +96,13 @@ export default class UserService {
     if (!isValidPassword) {
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
-    const { role } = userInfo;
-    return { status: 'SUCCESSFUL', data: { role } }
+    const payloadData = {
+      role: userInfo.role,
+      status: userInfo.status
+    }
+    // const { role, status } = userInfo;
+    return { status: 'SUCCESSFUL', data: payloadData }
   }
-
 
   public async activateUser(id: number, activationCode: string)
   : Promise<ServiceResponse<ServiceMessage>> {
@@ -100,6 +114,10 @@ export default class UserService {
       return { status: 'CONFLICT', data: { message: `User with id ${id} already activated` } }
     }
     if(user.activationCode !== activationCode) {
+      console.log(user);
+      
+      console.log(user.activationCode, activationCode);
+      
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid Activation Code' } }
     }
     await this.userModel.activateUser(id)

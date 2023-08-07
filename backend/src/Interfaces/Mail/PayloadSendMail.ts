@@ -3,4 +3,5 @@ export type PayloadSendMail = {
   username: string,
   activationUrl: string,
   subjectType: string,
+  role: string
 };
