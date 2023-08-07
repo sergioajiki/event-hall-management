@@ -33,12 +33,9 @@ export default function CreateEvent() {
     }
     try {
       const eventCreated = await postData('/event', body)
-      console.log('eventCreated', eventCreated.message);
       setSuccessMessage(eventCreated.message)
       setSuccessTryCreate(true)
     } catch (error: any) {
-      console.log(error);
-
       setErrorMessage(error.response.data.message)
       setFailedTryCreate(true);
     }

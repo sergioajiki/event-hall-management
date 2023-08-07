@@ -10,9 +10,8 @@ type deleteBody = {
 export default function DeleteEvent ( {id}: deleteBody ) {
   const router = useRouter();
   const deleteEvent = async(e: any) => {
-    e.preventDefault();
-    
-    const deleteEvent = await deleteData(`/event/${id}`) 
+    e.preventDefault();    
+    await deleteData(`/event/${id}`) 
     router.push('/')
   }
   return (

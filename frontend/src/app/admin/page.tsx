@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import CreateEvent from '../events/createEvent/page'
 import Header from '../component/Header'
 import { useRouter } from "next/navigation";
 

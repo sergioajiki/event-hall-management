@@ -21,7 +21,6 @@ export default function SelectAccess({id, previosRole}: updateBody) {
     const body = { role };
     try {
       const updatelevel = await updateData(`/users/role/${id}`, body)
-      console.log('eventCreated', updatelevel.message);
       setSuccessMessage(`${updatelevel.message} para ${role}` )
       setSuccessTryCreate(true)
     } catch (error: any) {

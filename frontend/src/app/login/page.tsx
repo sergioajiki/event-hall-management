@@ -38,7 +38,6 @@ export default function LoginPage(): JSX.Element {
         setErrorMessage(recoverdToken.message)
         setFailedTryCreate(true);
         setIsLogged(false);
-        console.log('status inativo', status);
       }
       setIsLogged(true);
       router.push('/');

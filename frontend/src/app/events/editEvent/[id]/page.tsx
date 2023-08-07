@@ -55,7 +55,6 @@ export default function EditEvent(
 
     try {
       const eventUpdated = await updateData(`/event/${params.id}`, body)
-      console.log('eventCreated', eventUpdated.message);
       setSuccessMessage(eventUpdated.message)
       setSuccessTryCreate(true)
     } catch (error: any) {
