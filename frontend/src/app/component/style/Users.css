@@ -1,7 +1,7 @@
 .UserComponent {
   font-size: 1.1em;
   background-color: slategrey;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   width: 330px;
   margin-left: 5px;

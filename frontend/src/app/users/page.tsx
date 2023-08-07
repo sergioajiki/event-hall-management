@@ -5,6 +5,7 @@ import { requestData } from '@/app/service/request'
 import Loading from '@/app/component/Loading';
 import { propsUser } from '@/app/types/propsUser';
 import User from '@/app/component/User';
+import Header from '../component/Header';
 
 
 
@@ -28,6 +29,7 @@ export default function AllUsers() {
 
   return (
     <>
+      <Header />
       <h1>Usuários</h1>
       {
         userList.map((user: propsUser) => (

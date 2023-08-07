@@ -13,7 +13,7 @@ export default function DeleteEvent ( {id}: deleteBody ) {
     e.preventDefault();
     
     const deleteEvent = await deleteData(`/event/${id}`) 
-    router.push('/events')
+    router.push('/')
   }
   return (
     <>

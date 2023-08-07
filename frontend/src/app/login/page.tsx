@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { postData, setToken } from '@/app/service/request';
 import SubscriptionUser from '../subscription/page';
 import './style/Login.css'
+import Header from '../component/Header';
 
 export default function LoginPage(): JSX.Element {
   const router = useRouter()
@@ -50,6 +51,7 @@ export default function LoginPage(): JSX.Element {
   return (
 
     <>
+    <Header />
     <span className="loginPage">
     <div>
       <form className="formLogin">

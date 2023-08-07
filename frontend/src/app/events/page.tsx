@@ -9,15 +9,18 @@ import EventAndDate from '@/app/component/EventAndDate';
 export default function Events() {
 
   const [eventsList, setEventsList] = useState([]);
-  const [logged, setLogin] = useState(false)
+  const [isLogged, setLogin] = useState(false)
   const [roleAccess, setRoleAccess] = useState('client')
+  const [isLoading, setIsLoading] =useState(true)
 
   const getEvents = async (endpoint: string) => {
     const response = await requestData(endpoint)
     setEventsList(response)
+    setLogin(true)
   }
   
   useEffect(() => {
+    setLogin(false)
     const token = localStorage.getItem('token') || false;
     const role = localStorage.getItem('role');
     if (token) setLogin(true);
@@ -27,11 +30,14 @@ export default function Events() {
     if(eventsList.length === 0) {
       getEvents(endpoint)
     }
+    setIsLoading(false)
   }, [eventsList, roleAccess]);
 
   if(!eventsList.length){
     return <Loading />
   }
+  if(isLoading) return <Loading />
+
  return (
     <>
       <h1>Eventos</h1>
@@ -44,6 +50,11 @@ export default function Events() {
             eventDate={ event.eventDate }
           />
         ))
+      }
+      {
+        (!isLogged) && (
+          <p>Faça o cadastro para visualizar novos eventos e confirmar a presença</p> 
+        )
       }
     </>
  )

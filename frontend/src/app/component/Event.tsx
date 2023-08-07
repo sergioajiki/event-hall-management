@@ -28,6 +28,7 @@ export default function Event({
         <span>Tipo: { eventType }</span>
         <span>{ description }</span>
       </div>
+      <span className="buttons">
       {
         (eventType === 'free' ) ? null 
         : (((isLogged)?
@@ -42,8 +43,8 @@ export default function Event({
         </button>
           ))
       }
-      
       {
+                
         (role === 'admin') ? (
         <div className="EditButton">          
           <button
@@ -58,6 +59,7 @@ export default function Event({
         </div>
         ) : null
       }
+      </span>
     </div>
     </>
     )

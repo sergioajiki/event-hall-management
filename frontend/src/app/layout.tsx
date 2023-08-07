@@ -1,4 +1,4 @@
-import Header from './component/Header';
+import { GlobalContexProvider } from "./Context/store"
 
 export const metadata = {
   title: 'Next.js',
@@ -13,8 +13,10 @@ export default function RootLayout({
     <html lang="en">
       <head />
         <body>
-          {/* <Header /> */}
-          {children}
+          <GlobalContexProvider>
+            {children}
+          </GlobalContexProvider>
+          
         </body>
     </html>
   )

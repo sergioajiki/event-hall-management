@@ -1,13 +1,14 @@
 .formCreateEvent {
-    align-items: center;
+    align-items:center;
     border: 1px solid green;
     border-radius: 10px;
     margin-left: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:start;
     width: 360px;  
-    height: 500px;
+    height: 650px;
+    margin-top: 20px;
   }
 
   .inputs {
@@ -36,6 +37,7 @@
     transition-duration: 0.4s;
     margin-top: 10px;
     width: 336px;
+    margin-left: 10px;
   }
   
   .buttonRegister:hover {

@@ -9,9 +9,9 @@ import './style/Header.css'
 export default function Header() {
   const router = useRouter();
   const [isLogged, setIsLogged] = useState(false)
-  // const [role, setRole] = useState('');
+  const [role, setRole] = useState('');
   const [email, setEmail] = useState('');
-  // const [token, setToken] = useState('');
+  const [token, setToken] = useState('');
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -24,21 +24,33 @@ export default function Header() {
   useEffect(() => {
     const token = localStorage.getItem('token') || false;
     if (token) setIsLogged(true);    
-    // const recoveredRole = localStorage.getItem('role') || '';
+    const recoveredRole = localStorage.getItem('role') || '';
     const recoveredEmail = localStorage.getItem('email') || '';
-    // setRole(recoveredRole)
+    setRole(recoveredRole)
     setEmail(recoveredEmail)
   }, [])
-  // if(!email) {
-  //   return <Loading />
-  // }
   return (
     <>
-      <div className="headerComponent" >    
+      <div className="headerComponent" > 
+      <button
+        onClick={ () => router.push('/') }
+        className="buttonHeader"
+        >
+          Home
+      </button>
+ 
           {
             (isLogged) ? (
               <>
               <h3> {email} </h3>
+              {
+                (role === 'admin') && (
+                  <button
+                  onClick={ () => router.push('/admin') }
+                  className="buttonHeader"
+                  >Tools</button>
+                )
+              }
               <button
               onClick={ () => logout() }
               className="buttonHeader"

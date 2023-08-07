@@ -22,7 +22,6 @@ export default function User({
           previosRole={ role }
         />
       </div>
-
     </div>
   )  
 }

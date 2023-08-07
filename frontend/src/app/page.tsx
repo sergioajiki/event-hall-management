@@ -11,13 +11,7 @@ export default function Home() {
   return (
     <>
       <Header/>
-      <Events/>
-      <p>Faça o cadastro para visualizar novos eventos e confirmar a presença</p> 
-       {/* <button
-        onClick={() => router.push('/login')}   
-       >
-        Login
-       </button> */}
+      <Events/>      
     </>
   )
 }
