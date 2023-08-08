@@ -19,7 +19,7 @@ export default function Header() {
     localStorage.removeItem('role');
     setIsLogged(false);
     router.push('/');
-  }
+    }
 
   useEffect(() => {
     const token = localStorage.getItem('token') || false;

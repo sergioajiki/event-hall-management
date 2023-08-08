@@ -6,31 +6,35 @@ import { requestData } from '@/app/service/request';
 import { useRouter } from "next/navigation";
 import '@/app/events/createEvent/style/createEvent.css'
 import Header from '@/app/component/Header';
+import Loading from '@/app/component/Loading';
 
 export default function EditEvent(
   { params }: { params: { id: string } },
 ) {
   const router = useRouter();
-
+  const [isLoading, setIstLoading] = useState(true)
   const [eventById, setEventById]: any = useState([]);
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventTime, setEventTime] = useState('');
   const [eventType, setEventType] = useState('private');
   const [description, setDescription] = useState('');
-  const [failedTryCreate, setFailedTryCreate] = useState(false);
-  const [successTryCreate, setSuccessTryCreate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [failedTryCreate, setFailedTryCreate] = useState(false);
+  // const [successTryCreate, setSuccessTryCreate] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
 
   const getEvent = async (endpoint: string) => {
+    
     const response = await requestData(endpoint);
+
     setEventById(response);
     setEventName(response.eventName)
     setEventDate(response.eventDate)
     setEventTime(response.eventTime)
     setEventType(response.eventType)
     setDescription(response.description)
+    setIstLoading(false)
   }
 
   useEffect(() => {
@@ -42,8 +46,8 @@ export default function EditEvent(
 
   const editEvent = async (e: any) => {
     e.preventDefault();
-    setSuccessTryCreate(false)
-    setFailedTryCreate(false)
+    // setSuccessTryCreate(false)
+    // setFailedTryCreate(false)
 
     const body = {
       eventName,
@@ -52,21 +56,28 @@ export default function EditEvent(
       eventType,
       description
     }
-
+    if (isLoading) {
+      return <Loading />;
+   }   
     try {
       const eventUpdated = await updateData(`/event/${params.id}`, body)
-      setSuccessMessage(eventUpdated.message)
-      setSuccessTryCreate(true)
+      alert(eventUpdated.message)
+      router.push('/')
+      // setSuccessMessage(eventUpdated.message)
+      // setSuccessTryCreate(true)
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
     }
   };
 
+    
   return (
     <>
       <Header />
       <form className="formCreateEvent">
+      <h2>Editar evento</h2>
         <span className="inputs">
           <div>
             <label
@@ -150,22 +161,22 @@ export default function EditEvent(
             type="submit"
             className="buttonRegister"
           >
-            Editar Evento
+            Atualizar
           </button>
-          <button
+          {/* <button
             onClick={() => router.push('/')}
             type="button"
             className="buttonRegister"
           >
             Home
-          </button>
+          </button> */}
           
-        {
+        {/* {
           (successTryCreate) ? (<p>{successMessage}</p>) : null
         }
         {
           (failedTryCreate) ? (<p>{errorMessage}</p>) : null
-        }
+        } */}
 
         </div>
 

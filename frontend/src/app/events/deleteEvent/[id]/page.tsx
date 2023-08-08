@@ -11,7 +11,8 @@ export default function DeleteEvent ( {id}: deleteBody ) {
   const router = useRouter();
   const deleteEvent = async(e: any) => {
     e.preventDefault();    
-    await deleteData(`/event/${id}`) 
+    const response = await deleteData(`/event/${id}`)
+    alert(response.message)
     router.push('/')
   }
   return (

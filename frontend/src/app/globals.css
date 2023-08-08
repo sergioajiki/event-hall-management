@@ -1,0 +1,14 @@
+button {
+  border: none;
+  height: 30px;  
+  width: 110px;
+  justify-content: center;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+button:hover {
+  background-color: seagreen;
+  color: white;
+  transition-duration: 0.4s;
+}

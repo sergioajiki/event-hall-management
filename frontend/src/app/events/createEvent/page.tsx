@@ -14,16 +14,16 @@ export default function CreateEvent() {
   const [eventTime, setEventTime] = useState('');
   const [eventType, setEventType] = useState('private');
   const [description, setDescription] = useState('');
-  const [failedTryCreate, setFailedTryCreate] = useState(false);
-  const [successTryCreate, setSuccessTryCreate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [failedTryCreate, setFailedTryCreate] = useState(false);
+  // const [successTryCreate, setSuccessTryCreate] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
 
   const createEvent = async (e: any) => {
     e.preventDefault();
 
-    setSuccessTryCreate(false)
-    setFailedTryCreate(false)
+    // setSuccessTryCreate(false)
+    // setFailedTryCreate(false)
     const body = {
       eventName,
       eventDate,
@@ -33,11 +33,14 @@ export default function CreateEvent() {
     }
     try {
       const eventCreated = await postData('/event', body)
-      setSuccessMessage(eventCreated.message)
-      setSuccessTryCreate(true)
+      alert(eventCreated.message)
+      router.push('/')
+      // setSuccessMessage(eventCreated.message)
+      // setSuccessTryCreate(true)
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
     }
 
   }
@@ -129,19 +132,19 @@ export default function CreateEvent() {
           >
             Cadastrar Evento
           </button>
-          <button
+          {/* <button
             onClick={() => router.push('/')}
             type="button"
             className="buttonRegister"
           >
             Home
-          </button>
-          {
+          </button> */}
+          {/* {
             (successTryCreate) ? (<p>{successMessage}</p>) : null
           }
           {
             (failedTryCreate) ? (<p>{errorMessage}</p>) : null
-          }
+          } */}
         </div>
       </form>
     </>

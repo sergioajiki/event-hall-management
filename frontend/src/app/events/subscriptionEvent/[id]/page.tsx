@@ -10,26 +10,27 @@ export default function SubscriptionEvent(
   {id, email}: subscriptionEvent
 ) {
 
-  const [failedTryCreate, setFailedTryCreate] = useState(false);
-  const [successTryCreate, setSuccessTryCreate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [failedTryCreate, setFailedTryCreate] = useState(false);
+  // const [successTryCreate, setSuccessTryCreate] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
   
   const signUpEvent = async(e: any) => {
     e.preventDefault();
-    setSuccessTryCreate(false)
-    setFailedTryCreate(false)
+    // setSuccessTryCreate(false)
+    // setFailedTryCreate(false)
     const bodyEmail = {email}
     console.log(email, id);
     
     try {
       const inscribed = await postData(`/subscriptionEvent/${id}`, bodyEmail)
-      console.log('inscribed', inscribed.message);
-      setSuccessMessage(inscribed.message)
-      setSuccessTryCreate(true)
+      alert(inscribed.message)
+      // setSuccessMessage(inscribed.message)
+      // setSuccessTryCreate(true)
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
     }
   }
   return (
@@ -40,12 +41,12 @@ export default function SubscriptionEvent(
       >
          Participar
       </button>
-      {
+      {/* {
         (successTryCreate) ? (<p>{ successMessage }</p> ) : null
       }
       { 
         (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
-      }
+      } */}
     </>
   )
 }

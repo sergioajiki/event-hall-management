@@ -1,23 +1,25 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from 'react';
 import { postData } from '@/app/service/request';
 import './style/Subscription.css'
 
 export default function SubscriptionUser() {
 
+  const router = useRouter()
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [failedTryCreate, setFailedTryCreate] = useState(false);
-  const [successTryCreate, setSuccessTryCreate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [failedTryCreate, setFailedTryCreate] = useState(false);
+  // const [successTryCreate, setSuccessTryCreate] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
   const createUser = async (e: any) => {
     e.preventDefault();
 
-    setSuccessTryCreate(false)
-    setFailedTryCreate(false)
+    // setSuccessTryCreate(false)
+    // setFailedTryCreate(false)
 
     const body = {
       username,
@@ -26,14 +28,18 @@ export default function SubscriptionUser() {
     }
     try {
       const userCreated = await postData('/login/register', body)
-      setSuccessMessage(userCreated.message)
-      setSuccessTryCreate(true)
+      alert(userCreated.message)
+      
+      // setSuccessMessage(userCreated.message)
+      // setSuccessTryCreate(true)
       setUsername('')
       setEmail('')
       setPassword('')
+      router.push('/')
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
     }
   }
 
@@ -92,12 +98,12 @@ export default function SubscriptionUser() {
           >
             Cadastrar
           </button>
-          {
+          {/* {
             (successTryCreate) ? (<p>{successMessage}</p>) : null
           }
           {
             (failedTryCreate) ? (<p>{errorMessage}</p>) : null
-          }
+          } */}
         </div>
 
       </form>

@@ -17,9 +17,11 @@ export default function Events() {
     const response = await requestData(endpoint)
     setEventsList(response)
     setLogin(true)
+    setIsLoading(false)
   }
   
   useEffect(() => {
+    setIsLoading(true)
     setLogin(false)
     const token = localStorage.getItem('token') || false;
     const role = localStorage.getItem('role');
@@ -30,12 +32,13 @@ export default function Events() {
     if(eventsList.length === 0) {
       getEvents(endpoint)
     }
+    // setLogin(true)
     setIsLoading(false)
   }, [eventsList, roleAccess]);
 
-  if(!eventsList.length){
-    return <Loading />
-  }
+  // if(!eventsList.length){
+  //   return <Loading />
+  // }
   if(isLoading) return <Loading />
 
  return (

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { propsEvent } from "../types/propsEvent";
 import { useRouter } from "next/navigation";
 import SubscriptionEvent from "../events/subscriptionEvent/[id]/page";
-import './style/Event.css'
 import DeleteEvent from "../events/deleteEvent/[id]/page";
+import './style/Event.css'
 
 
 export default function Event({
@@ -18,49 +18,50 @@ export default function Event({
     if (token) setIsLogged(true);
   }, [])
 
-  return(
+  return (
     <>
-    <div className="EventComponent">
-      <h2>{ eventName }</h2>
-      <div className="infos">
-        <span>Data: { eventDate }</span>
-        <span>Hora: { eventTime }</span>
-        <span>Tipo: { eventType }</span>
-        <span>{ description }</span>
-      </div>
-      <span className="buttons">
-      {
-        (eventType === 'free' ) ? null 
-        : (((isLogged)?
-          <SubscriptionEvent 
-            id={id}
-            email={email}
-          />  
-          :  <button
-          onClick={() => router.push('/login')}
-        >
-          Fazer Login
-        </button>
-          ))
-      }
-      {
-                
-        (role === 'admin') ? (
-        <div className="EditButton">          
-          <button
-            className="EventEditButton"
-            onClick={() => router.push(`/events/editEvent/${id}`)}
-          >
-            Editar Evento
-          </button>
-          <DeleteEvent
-            id={ id }
-          />
+      <div className="EventComponent">
+        <h2>{eventName}</h2>
+        <div className="infos">
+          <span>Data: {eventDate}</span>
+          <span>Hora: {eventTime}</span>
+          <span>Tipo: {eventType}</span>
+          <span>{description}</span>
         </div>
-        ) : null
-      }
-      </span>
-    </div>
+        <span className="buttons">
+          {
+            (eventType === 'free') ? null
+              : (((isLogged) ?
+                <SubscriptionEvent
+                  id={id}
+                  email={email}
+                />
+                : <button
+                  onClick={() => router.push('/login')}
+                >
+                  Fazer Login
+                </button>
+              ))
+          }
+          {
+
+            (role === 'admin') ? (
+              <div className="EditButton">
+                <button
+                  className="EventEditButton"
+                  onClick={() => router.push(`/events/editEvent/${id}`)}
+                >
+                  Editar Evento
+                </button>
+                <DeleteEvent
+                  id={id}
+                />
+              </div>
+            ) : null
+          }
+        </span>
+
+      </div>
     </>
-    )
+  )
 }

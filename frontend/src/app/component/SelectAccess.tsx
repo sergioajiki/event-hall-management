@@ -11,21 +11,23 @@ type updateBody = {
 export default function SelectAccess({id, previosRole}: updateBody) {
 
   const [role, setRole] = useState(previosRole);
-  const [failedTryCreate, setFailedTryCreate] = useState(false);
-  const [successTryCreate, setSuccessTryCreate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [failedTryCreate, setFailedTryCreate] = useState(false);
+  // const [successTryCreate, setSuccessTryCreate] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
 
   const updateUserLevel = async(e: any) => {
     e.preventDefault();
     const body = { role };
     try {
       const updatelevel = await updateData(`/users/role/${id}`, body)
-      setSuccessMessage(`${updatelevel.message} para ${role}` )
-      setSuccessTryCreate(true)
+      alert(`${updatelevel.message} para ${role}` )
+      // setSuccessMessage(`${updatelevel.message} para ${role}` )
+      // setSuccessTryCreate(true)
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
     }
   }
   
@@ -52,12 +54,12 @@ export default function SelectAccess({id, previosRole}: updateBody) {
         >
           Alterar Acesso
         </button>
-        {
+        {/* {
         (successTryCreate) ? (<p>{ successMessage }</p> ) : null
       }
       { 
         (failedTryCreate) ? ( <p>{ errorMessage }</p> ) : null
-      }
+      } */}
       </>
   )
 }

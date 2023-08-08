@@ -32,18 +32,21 @@ export default function LoginPage(): JSX.Element {
       localStorage.setItem('token', recoverdToken.token);
       localStorage.setItem('role', role);
       localStorage.setItem('email', email)
-      setSuccessMessage(recoverdToken.message)
-      setSuccessTryCreate(true)
+      // alert(recoverdToken.message)
+      // setSuccessMessage(recoverdToken.message)
+      // setSuccessTryCreate(true)
       if (status === 0) {
-        setErrorMessage(recoverdToken.message)
-        setFailedTryCreate(true);
+        alert(recoverdToken.message)
+        // setErrorMessage(recoverdToken.message)
+        // setFailedTryCreate(true);
         setIsLogged(false);
       }
       setIsLogged(true);
       router.push('/');
     } catch (error: any) {
-      setErrorMessage(error.response.data.message)
-      setFailedTryCreate(true);
+      alert(error.response.data.message)
+      // setErrorMessage(error.response.data.message)
+      // setFailedTryCreate(true);
       setIsLogged(false);
     }
   };
@@ -76,7 +79,7 @@ export default function LoginPage(): JSX.Element {
             >
               Senha:
               <input
-                type="text"
+                type="password"
                 value={password}
                 onChange={({ target: { value } }) => setPassword(value)}
                 placeholder="Password"
@@ -92,12 +95,12 @@ export default function LoginPage(): JSX.Element {
             className="buttonLogin"
           >Entrar</button>
         </div>
-        {
+        {/* {
           (successTryCreate) ? (<p>{successMessage}</p>) : null
         }
         {
           (failedTryCreate) ? (<p>{errorMessage}</p>) : null
-        }
+        } */}
       </form>
       </div>
       <div>

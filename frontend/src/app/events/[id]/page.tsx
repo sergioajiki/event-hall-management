@@ -37,9 +37,7 @@ export default function EventInfos(
   if(!eventById){
     return <Loading />
   }
-
-  console.log('email', email, 'role', role);
-
+ 
   return (
     <>
     <div>

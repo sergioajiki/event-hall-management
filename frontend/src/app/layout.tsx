@@ -1,4 +1,5 @@
 import { GlobalContexProvider } from "./Context/store"
+import '@/app/globals.css'
 
 export const metadata = {
   title: 'Event Hall',

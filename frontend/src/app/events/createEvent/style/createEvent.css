@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content:start;
     width: 360px;  
-    height: 650px;
+    height: 500px;
     margin-top: 20px;
   }
 
@@ -36,8 +36,7 @@
     height: 46px;
     transition-duration: 0.4s;
     margin-top: 10px;
-    width: 336px;
-    margin-left: 10px;
+    width: 335px;    
   }
   
   .buttonRegister:hover {
@@ -49,5 +48,5 @@
     font-size: 1rem;
     font-weight: 700;
     height: 46px;
-    width: 336px;
+    width: 335px;
   }  
