@@ -7,8 +7,9 @@
   border-radius: 10px;
   box-shadow: -4px 9px 13px darkgray;
   color: white;
-  height: 250px;
+  height: auto;
   width: 250px;
+  overflow: auto;
 }
 
 .infos {

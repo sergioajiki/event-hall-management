@@ -25,7 +25,7 @@ export default function EditEvent(
   // const [successMessage, setSuccessMessage] = useState('');
 
   const getEvent = async (endpoint: string) => {
-    
+
     const response = await requestData(endpoint);
 
     setEventById(response);
@@ -58,7 +58,7 @@ export default function EditEvent(
     }
     if (isLoading) {
       return <Loading />;
-   }   
+    }
     try {
       const eventUpdated = await updateData(`/event/${params.id}`, body)
       alert(eventUpdated.message)
@@ -72,115 +72,117 @@ export default function EditEvent(
     }
   };
 
-    
+
   return (
     <>
       <Header />
-      <form className="formCreateEvent">
-      <h2>Editar evento</h2>
-        <span className="inputs">
-          <div>
-            <label
-              htmlFor="eventNameInput"
-            >
-              Nome:
-              <input
-                type="text"
-                value={eventName}
-                onChange={({ target: { value } }) => setEventName(value)}
-                placeholder="Nome"
-                className="inputEvent"
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="eventDateInput"
-            >
-              Data:
-              <input
-                type="text"
-                value={eventDate}
-                onChange={({ target: { value } }) => setEventDate(value)}
-                placeholder="Data"
-                className="inputEvent"
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="eventTimeInput"
-            >
-              Horário:
-              <input
-                type="text"
-                value={eventTime}
-                onChange={({ target: { value } }) => setEventTime(value)}
-                placeholder="Horário"
-                className="inputEvent"
-              />
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="eventTypeInput"
-            >
-              Tipo:
-              <select
-                id="eventType"
-                name="type"
-                value={eventType}
-                className="inputEvent"
-                onChange={({ target: { value } }) => setEventType(value)}
+      <span className="eventInfo">
+        <form className="formCreateEvent">
+          <h2>Editar evento</h2>
+          <span className="inputs">
+            <div>
+              <label
+                htmlFor="eventNameInput"
               >
-                <option value="free">Livre</option>
-                <option value="registered">Registrado</option>
-                <option value="private">Privado</option>
-              </select>
-            </label>
-          </div>
+                Nome:
+                <input
+                  type="text"
+                  value={eventName}
+                  onChange={({ target: { value } }) => setEventName(value)}
+                  placeholder="Nome"
+                  className="inputEvent"
+                />
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="eventDateInput"
+              >
+                Data:
+                <input
+                  type="text"
+                  value={eventDate}
+                  onChange={({ target: { value } }) => setEventDate(value)}
+                  placeholder="Data"
+                  className="inputEvent"
+                />
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="eventTimeInput"
+              >
+                Horário:
+                <input
+                  type="text"
+                  value={eventTime}
+                  onChange={({ target: { value } }) => setEventTime(value)}
+                  placeholder="Horário"
+                  className="inputEvent"
+                />
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="eventTypeInput"
+              >
+                Tipo:
+                <select
+                  id="eventType"
+                  name="type"
+                  value={eventType}
+                  className="inputEvent"
+                  onChange={({ target: { value } }) => setEventType(value)}
+                >
+                  <option value="free">Livre</option>
+                  <option value="registered">Registrado</option>
+                  <option value="private">Privado</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="descriptionInput"
+              >
+                Descrição:
+                <input
+                  type="text"
+                  value={description}
+                  onChange={({ target: { value } }) => setDescription(value)}
+                  placeholder="Descrição"
+                  className="inputEvent"
+                />
+              </label>
+            </div>
+          </span>
           <div>
-            <label
-              htmlFor="descriptionInput"
+            <br />
+            <button
+              onClick={(e) => editEvent(e)}
+              type="submit"
+              className="buttonRegister"
             >
-              Descrição:
-              <input
-                type="text"
-                value={description}
-                onChange={({ target: { value } }) => setDescription(value)}
-                placeholder="Descrição"
-                className="inputEvent"
-              />
-            </label>
-          </div>
-        </span>
-        <div>
-          <br />
-          <button
-            onClick={(e) => editEvent(e)}
-            type="submit"
-            className="buttonRegister"
-          >
-            Atualizar
-          </button>
-          {/* <button
+              Atualizar
+            </button>
+            {/* <button
             onClick={() => router.push('/')}
             type="button"
             className="buttonRegister"
           >
             Home
           </button> */}
-          
-        {/* {
+
+            {/* {
           (successTryCreate) ? (<p>{successMessage}</p>) : null
         }
         {
           (failedTryCreate) ? (<p>{errorMessage}</p>) : null
         } */}
 
-        </div>
+          </div>
 
-      </form>
+        </form>
+      </span>
     </>
   )
 }

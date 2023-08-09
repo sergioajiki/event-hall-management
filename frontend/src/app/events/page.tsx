@@ -11,7 +11,7 @@ export default function Events() {
   const [eventsList, setEventsList] = useState([]);
   const [isLogged, setLogin] = useState(false)
   const [roleAccess, setRoleAccess] = useState('client')
-  const [isLoading, setIsLoading] =useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getEvents = async (endpoint: string) => {
     const response = await requestData(endpoint)
@@ -19,7 +19,7 @@ export default function Events() {
     setLogin(true)
     setIsLoading(false)
   }
-  
+
   useEffect(() => {
     setIsLoading(true)
     setLogin(false)
@@ -29,7 +29,7 @@ export default function Events() {
     if (role) setRoleAccess(role)
     let endpoint = '/event';
     if (roleAccess === 'admin' || roleAccess === 'guest') endpoint = 'event/private'
-    if(eventsList.length === 0) {
+    if (eventsList.length === 0) {
       getEvents(endpoint)
     }
     // setLogin(true)
@@ -39,26 +39,29 @@ export default function Events() {
   // if(!eventsList.length){
   //   return <Loading />
   // }
-  if(isLoading) return <Loading />
+  if (isLoading) return <Loading />
 
- return (
+  return (
     <>
-      <h1>Eventos</h1>
-      {
+      <div className="compMain eventInfo" >
+        <h1>Eventos</h1>
+        {
           eventsList.map((event: propsEvent) => (
-          <EventAndDate
-            key={ event.id}
-            id={ event.id }
-            eventName={ event.eventName }
-            eventDate={ event.eventDate }
-          />
-        ))
-      }
-      {
-        (!isLogged) && (
-          <p>Faça o cadastro para visualizar novos eventos e confirmar a presença</p> 
-        )
-      }
+            <EventAndDate
+              key={event.id}
+              id={event.id}
+              eventName={event.eventName}
+              eventDate={event.eventDate}
+            />
+          ))
+        }
+        {
+          (!isLogged) && (
+            <p>Faça o cadastro para visualizar novos eventos e confirmar a presença</p>
+          )
+        }
+      </div>
+
     </>
- )
+  )
 }

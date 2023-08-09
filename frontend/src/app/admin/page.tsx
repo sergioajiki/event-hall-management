@@ -8,22 +8,24 @@ export default function Admin() {
   const router = useRouter();
   return (
     <>
-      <Header />
-      <div>
-        <h3>Ferramentas de administrador</h3>
-        <button
-          onClick={ () => router.push('/users') }
-          className="buttonHeader"
+      <span className="eventInfo">
+        <Header />
+        <h1>Ferramentas de administrador</h1>
+        <div className="eventInfo">
+          <button
+            onClick={() => router.push('/users')}
+            className="buttonHeader"
           >
             Lista de Usuários
-        </button>
-        <button
-          onClick={ () => router.push('/events/createEvent') }
-          className="buttonHeader"
+          </button>
+          <button
+            onClick={() => router.push('/events/createEvent')}
+            className="buttonHeader"
           >
             Criar Evento
-        </button>
-      </div>
+          </button>
+        </div>
+      </span>
     </>
 
   )

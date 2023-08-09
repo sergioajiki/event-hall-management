@@ -1,5 +1,15 @@
+body {
+  background-color:rgb(229, 241, 252);
+  height: auto;
+  min-height: 780px;
+  margin: 50px;
+  border-radius: 20px;
+  box-shadow: -4px 9px 13px darkgray;
+  }
+
 button {
-  border: none;
+  background-color: rgb(190, 215, 240);
+  border-color: rgb(168, 191, 214);
   height: 30px;  
   width: 110px;
   justify-content: center;
@@ -8,7 +18,30 @@ button {
 }
 
 button:hover {
-  background-color: seagreen;
+  background-color: rgb(31, 66, 87);
+  border-color: rgb(48, 85, 107);
   color: white;
   transition-duration: 0.4s;
+}
+
+.compMain {
+  height: 90%;
+  margin: 20px;
+  overflow-x: auto;
+}
+
+.eventInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+.meio {
+  width: 700px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
 }
