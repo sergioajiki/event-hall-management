@@ -1,0 +1,68 @@
+.UserComponent {
+  font-size: 1.1em;
+  background-color: rgb(191, 207, 221);
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  width: 285px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+.cards {
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.infoUsers {
+  display: flex;
+  align-self: self-start;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.buttonsUser {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+}
+
+.inputType {
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: blue;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 40px;
+  margin-bottom: 5px;
+  width: 270px;
+
+}
+
+.buttonUpdateType {
+  background: blue;
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 46px;
+  transition-duration: 0.4s;
+  margin-top: 10px;
+  width: 270px;
+  margin-bottom: 5px;
+}
+
+.buttonUpdateType:hover {
+  background: green;
+  border: 1px solid green;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 46px;
+  width: 270px;
+} 

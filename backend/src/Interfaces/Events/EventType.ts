@@ -1,0 +1,1 @@
+export type EventType = 'free' | 'registered' | 'private';
