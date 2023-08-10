@@ -10,7 +10,6 @@ const emailQueue = new Queue('emailNotifications', {
 
 emailQueue.process(async (job) => {
   const { data } = job;
-  console.log(`Serviço para enviar:  ${JSON.stringify(job.data)}`);
   await nodemailer.sendEmail(data);
 });
 

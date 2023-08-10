@@ -21,7 +21,6 @@ class App {
         this.app = (0, express_1.default)();
         this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
-        // this.config();
         this.app.get('/', (_req, res) => __awaiter(this, void 0, void 0, function* () {
             return res.status(200).json({ message: 'Yeeeiiiii' });
         }));
@@ -30,18 +29,8 @@ class App {
     routers() {
         this.app.use(routers_1.default);
     }
-    // private config(): void {
-    //     const accessControl: express.RequestHandler = (_req, res, next) => {
-    //       res.header('Access-Control-Allow-Origin', '*');
-    //       res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
-    //       res.header('Access-Control-Allow-Headers', '*');
-    //       next();
-    //     };
-    //     this.app.use(express.json());
-    //     this.app.use(accessControl);
-    //   }
     start(PORT) {
-        this.app.listen(PORT, () => console.log(`backend de EventHall up and running on PORT ${PORT} 🚀`));
+        this.app.listen(PORT, () => console.log(`backend de EventHall up and running on PORT ${PORT}`));
     }
 }
 exports.App = App;

@@ -14,7 +14,6 @@ const validateToken = (req: Request, res: Response, next: NextFunction): Respons
     res.locals.user = Jwtoken.verify(token);
     next();
   } catch (err) {
-    // const error = err as { message: string };
     return res.status(401).json({ message: 'Invalid token' });
   }
 };

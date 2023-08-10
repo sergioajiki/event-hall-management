@@ -54,7 +54,6 @@ export default class UserService {
     }
     await this.userModel.updateUserById(+id, userPayload);
     
-    console.log('updaterle', userPayload, 'antigo', isUser);
     const { email, username } = isUser
     const { role } = userPayload
     await emailBullService.emailQueue.add({email, username, role, subjectType: 'changeRole'})
@@ -100,7 +99,6 @@ export default class UserService {
       role: userInfo.role,
       status: userInfo.status
     }
-    // const { role, status } = userInfo;
     return { status: 'SUCCESSFUL', data: payloadData }
   }
 
@@ -114,14 +112,9 @@ export default class UserService {
       return { status: 'CONFLICT', data: { message: `User with id ${id} already activated` } }
     }
     if(user.activationCode !== activationCode) {
-      console.log(user);
-      
-      console.log(user.activationCode, activationCode);
-      
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid Activation Code' } }
     }
     await this.userModel.activateUser(id)
     return { status: 'CREATE', data: { message: 'Status do usuário foi atualizado' } }
   }
-
 }

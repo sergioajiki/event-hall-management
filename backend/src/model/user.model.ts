@@ -47,6 +47,5 @@ export default class UserModel implements IUserModel {
   })
   return updatedUser;
 }
-  
 
 }

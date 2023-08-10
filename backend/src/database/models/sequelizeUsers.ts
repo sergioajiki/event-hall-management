@@ -4,10 +4,9 @@ import {
     InferAttributes,
     InferCreationAttributes,
     CreationOptional,
-    // Association,
 } from 'sequelize';
 import db from './index';
-// import SequelizeEvents from './sequelizeEvents';
+
 
 class SequelizeUsers extends Model<InferAttributes<SequelizeUsers>,
 InferCreationAttributes<SequelizeUsers>> {

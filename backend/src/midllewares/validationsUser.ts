@@ -36,8 +36,6 @@ export default class ValidationUser {
   static validateUpdateUserFields(req: Request, res: Response, next: NextFunction)
 	: Response | void {
 		const { role } = req.body;
-    console.log( role);
-    
     if (!role) {
       return res.status(400).json({ message: 'All fields must be filled' });
     }
